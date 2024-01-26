@@ -1,6 +1,9 @@
 #include <stddef.h>
+
 int streql(const char* one, const char* other);
 int strneql(const char *one, const char *other, int n);
+int strstartswith(const char *str, const char *prefix);
+
 char *my_strrchr(const char *haystack, char needle);
 char *my_strchrnul(const char *haystack, char needle);
 char *my_strncpy(char * destination, const char * source, size_t num);

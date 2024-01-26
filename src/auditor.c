@@ -1,5 +1,6 @@
 #include "auditor.h"
 
+static int nix_channel = CHANNEL_UNKNOWN;
 static int audit_log_fd;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
 static char search_result[MAX_PATH_LENGTH] = {0};
@@ -168,4 +169,39 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
     }
   }
   return (char *)name;
+}
+
+unsigned int la_objopen(struct link_map *map, Lmid_t lmid,
+ uintptr_t *cookie) {
+  log_write("la_objopen(");
+  log_write(map->l_name);
+  log_write(")\n");
+  if (nix_channel == CHANNEL_UNKNOWN) {
+    nix_channel = get_nix_channel(map->l_name);
+    if (nix_channel != CHANNEL_UNKNOWN) {
+      log_write("Found Nix channel: ");
+      switch (nix_channel) {
+        case CHANNEL_23_11:
+        log_write("stable-23_11");
+        break;
+        case CHANNEL_23_05:
+        log_write("stable-23_05");
+        break;
+        case CHANNEL_22_11:
+        log_write("stable-22_11");
+        break;
+        case CHANNEL_22_05:
+        log_write("stable-22_05");
+        break;
+        default:
+        log_write("invalid");
+      }
+      log_write("\n");
+    }
+  }
+  return 0;
+}
+
+void la_preinit(uintptr_t *cookie) {
+  log_write("la_preinit()\n");
 }

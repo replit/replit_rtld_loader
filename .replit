@@ -1,16 +1,11 @@
 entrypoint = "main.py"
 
-disableGuessPackages = true
-
 modules = ["python-3.10:v40-20240117-0bd73cd"]
 
 hidden = [".pythonlibs"]
 
-[env]
-PATH = "$REPL_HOME/bin:$PATH"
-
 [nix]
-channel = "stable-23_05"
+channel = "stable-23_11"
 
 [unitTest]
 language = "python3"

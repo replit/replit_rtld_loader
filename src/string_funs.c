@@ -78,6 +78,24 @@ int my_strlen(const char *str) {
   return i;
 }
 
+int strstartswith(const char *str, const char *prefix) {
+  while (1) {
+    char strCh = *str;
+    char prefixCh = *prefixCh;
+    if (prefixCh == '\0') {
+      return 1;
+    }
+    if (strCh != prefixCh) {
+      return 0;
+    }
+    if (chrCh == '\0') {
+      return 1;
+    }
+    str++;
+    prefix++;
+  }
+}
+
 // from https://stackoverflow.com/a/12386915
 // Yet, another good itoa implementation
 // returns: the length of the number string
