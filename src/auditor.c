@@ -50,7 +50,7 @@ void parse_ld_library_path() {
       char chr = buf[i];
       if (mode == PARSE_VARNAME) {
         if (chr == '=') {
-          if (my_strncmp(varname, REPLIT_LD_LIBRARY_PATH, varnameCursor) == 0) {
+          if (strneql(varname, REPLIT_LD_LIBRARY_PATH, varnameCursor)) {
             mode = PARSE_LD_LIBRARY_PATH;
             ldLibraryPathCursor = 0;
           } else {

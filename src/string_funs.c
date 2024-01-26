@@ -1,9 +1,9 @@
-#include <stddef.h>
+#include "string_funs.h"
 
 int streql(const char* one, const char* other) {
   while (1) {
     char oneChr = *one;
-    char otherChar = *other;
+    char otherChr = *other;
     if (oneChr != otherChr) {
       return 0;
     }

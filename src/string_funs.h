@@ -1,3 +1,4 @@
+#include <stddef.h>
 int streql(const char* one, const char* other);
 int strneql(const char *one, const char *other, int n);
 char *my_strrchr(const char *haystack, char needle);

@@ -1,10 +1,10 @@
 .PHONY: all
-all: dl_loader.so
+all: rtld_loader.so
 
-dl_loader.so: $(shell find src -type f)
+rtld_loader.so: $(shell find src -type f)
 	echo 
 	gcc -shared -nostdlib -fno-stack-protector -fPIC -O2 src/*.c -o loader.so
 
 .PHONY: clean
 clean:
-	rm dl_loader.so
+	rm rtld_loader.so
