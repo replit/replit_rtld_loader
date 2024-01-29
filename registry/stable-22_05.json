@@ -1364,6 +1364,60 @@
   "libTKernel.so.7.5.1": [
     "/nix/store/mpr4fvqi0a1hx61pwwmnsy9ks2c31gax-opencascade-occt-7.5.1/lib/libTKernel.so.7.5.1"
   ],
+  "libX11-xcb.so": [
+    "/nix/store/31359c9yjmw4c45172z6xmpjz2wsh0zk-libX11-1.7.2/lib/libX11-xcb.so"
+  ],
+  "libX11-xcb.so.1": [
+    "/nix/store/31359c9yjmw4c45172z6xmpjz2wsh0zk-libX11-1.7.2/lib/libX11-xcb.so.1"
+  ],
+  "libX11-xcb.so.1.0.0": [
+    "/nix/store/31359c9yjmw4c45172z6xmpjz2wsh0zk-libX11-1.7.2/lib/libX11-xcb.so.1.0.0"
+  ],
+  "libX11.so": [
+    "/nix/store/31359c9yjmw4c45172z6xmpjz2wsh0zk-libX11-1.7.2/lib/libX11.so"
+  ],
+  "libX11.so.6": [
+    "/nix/store/31359c9yjmw4c45172z6xmpjz2wsh0zk-libX11-1.7.2/lib/libX11.so.6"
+  ],
+  "libX11.so.6.4.0": [
+    "/nix/store/31359c9yjmw4c45172z6xmpjz2wsh0zk-libX11-1.7.2/lib/libX11.so.6.4.0"
+  ],
+  "libXcursor.so": [
+    "/nix/store/4wxhrapj6mcyb4aq6npslkkrc7nvzncn-libXcursor-1.2.0/lib/libXcursor.so"
+  ],
+  "libXcursor.so.1": [
+    "/nix/store/4wxhrapj6mcyb4aq6npslkkrc7nvzncn-libXcursor-1.2.0/lib/libXcursor.so.1"
+  ],
+  "libXcursor.so.1.0.2": [
+    "/nix/store/4wxhrapj6mcyb4aq6npslkkrc7nvzncn-libXcursor-1.2.0/lib/libXcursor.so.1.0.2"
+  ],
+  "libXext.so": [
+    "/nix/store/7sx990hnww7jnwv51mgln2kv5ni6im8r-libXext-1.3.4/lib/libXext.so"
+  ],
+  "libXext.so.6": [
+    "/nix/store/7sx990hnww7jnwv51mgln2kv5ni6im8r-libXext-1.3.4/lib/libXext.so.6"
+  ],
+  "libXext.so.6.4.0": [
+    "/nix/store/7sx990hnww7jnwv51mgln2kv5ni6im8r-libXext-1.3.4/lib/libXext.so.6.4.0"
+  ],
+  "libXi.so": [
+    "/nix/store/gx4h8bqjsqmzxa44zsj7w3vjfydb28n6-libXi-1.8/lib/libXi.so"
+  ],
+  "libXi.so.6": [
+    "/nix/store/gx4h8bqjsqmzxa44zsj7w3vjfydb28n6-libXi-1.8/lib/libXi.so.6"
+  ],
+  "libXi.so.6.1.0": [
+    "/nix/store/gx4h8bqjsqmzxa44zsj7w3vjfydb28n6-libXi-1.8/lib/libXi.so.6.1.0"
+  ],
+  "libXinerama.so": [
+    "/nix/store/ymhb2vjlgqk1fw7vbzvqra48369l7bp0-libXinerama-1.1.4/lib/libXinerama.so"
+  ],
+  "libXinerama.so.1": [
+    "/nix/store/ymhb2vjlgqk1fw7vbzvqra48369l7bp0-libXinerama-1.1.4/lib/libXinerama.so.1"
+  ],
+  "libXinerama.so.1.0.0": [
+    "/nix/store/ymhb2vjlgqk1fw7vbzvqra48369l7bp0-libXinerama-1.1.4/lib/libXinerama.so.1.0.0"
+  ],
   "libXorcode.so": [
     "/nix/store/47hn19s0z35p9946lb68crpqbc5jhqrp-liberasurecode-1.6.2/lib/libXorcode.so"
   ],
@@ -1372,6 +1426,24 @@
   ],
   "libXorcode.so.1.0.1": [
     "/nix/store/47hn19s0z35p9946lb68crpqbc5jhqrp-liberasurecode-1.6.2/lib/libXorcode.so.1.0.1"
+  ],
+  "libXrandr.so": [
+    "/nix/store/ab548k665mxc37s9r5bbm5rb3lyayhkd-libXrandr-1.5.2/lib/libXrandr.so"
+  ],
+  "libXrandr.so.2": [
+    "/nix/store/ab548k665mxc37s9r5bbm5rb3lyayhkd-libXrandr-1.5.2/lib/libXrandr.so.2"
+  ],
+  "libXrandr.so.2.2.0": [
+    "/nix/store/ab548k665mxc37s9r5bbm5rb3lyayhkd-libXrandr-1.5.2/lib/libXrandr.so.2.2.0"
+  ],
+  "libXxf86vm.so": [
+    "/nix/store/f7ky6a411axs3g59fc11prpdkj74g73y-libXxf86vm-1.1.4/lib/libXxf86vm.so"
+  ],
+  "libXxf86vm.so.1": [
+    "/nix/store/f7ky6a411axs3g59fc11prpdkj74g73y-libXxf86vm-1.1.4/lib/libXxf86vm.so.1"
+  ],
+  "libXxf86vm.so.1.0.0": [
+    "/nix/store/f7ky6a411axs3g59fc11prpdkj74g73y-libXxf86vm-1.1.4/lib/libXxf86vm.so.1.0.0"
   ],
   "libZXing.so": [
     "/nix/store/gfh7nhncwnc12nyacabgysrh3kyxic0i-zxing-cpp-1.2.0/lib/libZXing.so"
@@ -2584,8 +2656,8 @@
   ],
   "libcom_err.so": [
     "/nix/store/3k9bi690y4hdsvni2yr1xw9xfgklgr5y-krb5-1.19.3/lib/libcom_err.so",
-    "/nix/store/rv6rxz1swra98hl5zpdw1rxzyla3pwwl-libkrb5-1.19.3/lib/libcom_err.so",
-    "/nix/store/hwgih5529jgpwjs58zd899hqpvsssqbg-e2fsprogs-1.46.5/lib/libcom_err.so"
+    "/nix/store/hwgih5529jgpwjs58zd899hqpvsssqbg-e2fsprogs-1.46.5/lib/libcom_err.so",
+    "/nix/store/rv6rxz1swra98hl5zpdw1rxzyla3pwwl-libkrb5-1.19.3/lib/libcom_err.so"
   ],
   "libcom_err.so.2": [
     "/nix/store/hwgih5529jgpwjs58zd899hqpvsssqbg-e2fsprogs-1.46.5/lib/libcom_err.so.2"
@@ -3507,12 +3579,12 @@
     "/nix/store/q69wlv72zmwpvqsjdvq6mxzz92kknswp-libgbinder-1.1.19/lib/libgbinder.so.1.1.19"
   ],
   "libgcc_s.so": [
-    "/nix/store/j132k1ncfn6gjfd2f5s1gz37170rch4h-gcc-11.3.0-lib/lib/libgcc_s.so",
-    "/nix/store/scd5n7xsn0hh0lvhhnycr9gx0h8xfzsl-glibc-2.34-210/lib/libgcc_s.so"
+    "/nix/store/scd5n7xsn0hh0lvhhnycr9gx0h8xfzsl-glibc-2.34-210/lib/libgcc_s.so",
+    "/nix/store/j132k1ncfn6gjfd2f5s1gz37170rch4h-gcc-11.3.0-lib/lib/libgcc_s.so"
   ],
   "libgcc_s.so.1": [
-    "/nix/store/j132k1ncfn6gjfd2f5s1gz37170rch4h-gcc-11.3.0-lib/lib/libgcc_s.so.1",
-    "/nix/store/scd5n7xsn0hh0lvhhnycr9gx0h8xfzsl-glibc-2.34-210/lib/libgcc_s.so.1"
+    "/nix/store/scd5n7xsn0hh0lvhhnycr9gx0h8xfzsl-glibc-2.34-210/lib/libgcc_s.so.1",
+    "/nix/store/j132k1ncfn6gjfd2f5s1gz37170rch4h-gcc-11.3.0-lib/lib/libgcc_s.so.1"
   ],
   "libgdk-3.so": [
     "/nix/store/sqhmx15c0ici7qsy4ambqhkic76pc7fq-gtk+3-3.24.34/lib/libgdk-3.so"
@@ -4175,8 +4247,8 @@
     "/nix/store/7j2wjg1yas0cmvl3p20ic8088mb3qhcn-libimagequant-2.17.0/lib/libimagequant.so.0"
   ],
   "libinchi.so": [
-    "/nix/store/qf7cy2cr04accjaccqm9bg44cbs1hyid-openbabel-3.1.1/lib/libinchi.so",
-    "/nix/store/k77idr64s4z0nvagyww9hf0pbkr8j1fj-inchi-1.0.6/lib/libinchi.so"
+    "/nix/store/k77idr64s4z0nvagyww9hf0pbkr8j1fj-inchi-1.0.6/lib/libinchi.so",
+    "/nix/store/qf7cy2cr04accjaccqm9bg44cbs1hyid-openbabel-3.1.1/lib/libinchi.so"
   ],
   "libinchi.so.0": [
     "/nix/store/qf7cy2cr04accjaccqm9bg44cbs1hyid-openbabel-3.1.1/lib/libinchi.so.0"
@@ -6134,49 +6206,49 @@
     "/nix/store/rwk88mx7k44hfn2qv34vsxfzxasshnx2-Clipper-6.4.2/lib/libpolyclipping.so.22.0.0"
   ],
   "libpoppler-cpp.so": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-cpp.so",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-cpp.so",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler-cpp.so",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-cpp.so"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-cpp.so"
   ],
   "libpoppler-cpp.so.0": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-cpp.so.0",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-cpp.so.0",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler-cpp.so.0",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-cpp.so.0"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-cpp.so.0"
   ],
   "libpoppler-cpp.so.0.10.0": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-cpp.so.0.10.0",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-cpp.so.0.10.0",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler-cpp.so.0.10.0",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-cpp.so.0.10.0"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-cpp.so.0.10.0"
   ],
   "libpoppler-glib.so": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-glib.so",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-glib.so",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler-glib.so",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-glib.so"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-glib.so"
   ],
   "libpoppler-glib.so.8": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-glib.so.8",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-glib.so.8",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler-glib.so.8",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-glib.so.8"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-glib.so.8"
   ],
   "libpoppler-glib.so.8.23.0": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-glib.so.8.23.0",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-glib.so.8.23.0",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler-glib.so.8.23.0",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler-glib.so.8.23.0"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler-glib.so.8.23.0"
   ],
   "libpoppler.so": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler.so",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler.so",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler.so",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler.so"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler.so"
   ],
   "libpoppler.so.122": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler.so.122",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler.so.122",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler.so.122",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler.so.122"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler.so.122"
   ],
   "libpoppler.so.122.0.0": [
-    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler.so.122.0.0",
+    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler.so.122.0.0",
     "/nix/store/gi43yy0gjlz9nz7yxmsbyzj0mfnjkmss-poppler-glib-22.06.0/lib/libpoppler.so.122.0.0",
-    "/nix/store/j5hqjp6y3harih5xr0rb1xgdagp3yscg-poppler-glib-22.06.0/lib/libpoppler.so.122.0.0"
+    "/nix/store/a7hz9d3vwn1m00yw7c0fk6jq2hskykqv-poppler-utils-22.06.0/lib/libpoppler.so.122.0.0"
   ],
   "libportaudio.so": [
     "/nix/store/x2vl9ll1mgv335qsmr1jfdix2lvi6jhh-portaudio-190700_20210406/lib/libportaudio.so"
@@ -6326,40 +6398,40 @@
     "/nix/store/scd5n7xsn0hh0lvhhnycr9gx0h8xfzsl-glibc-2.34-210/lib/libpthread.so.0"
   ],
   "libpulse-mainloop-glib.so": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-mainloop-glib.so",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-mainloop-glib.so"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-mainloop-glib.so",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-mainloop-glib.so"
   ],
   "libpulse-mainloop-glib.so.0": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-mainloop-glib.so.0",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-mainloop-glib.so.0"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-mainloop-glib.so.0",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-mainloop-glib.so.0"
   ],
   "libpulse-mainloop-glib.so.0.0.6": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-mainloop-glib.so.0.0.6",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-mainloop-glib.so.0.0.6"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-mainloop-glib.so.0.0.6",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-mainloop-glib.so.0.0.6"
   ],
   "libpulse-simple.so": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-simple.so",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-simple.so"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-simple.so",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-simple.so"
   ],
   "libpulse-simple.so.0": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-simple.so.0",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-simple.so.0"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-simple.so.0",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-simple.so.0"
   ],
   "libpulse-simple.so.0.1.1": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-simple.so.0.1.1",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-simple.so.0.1.1"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse-simple.so.0.1.1",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse-simple.so.0.1.1"
   ],
   "libpulse.so": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse.so",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse.so"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse.so",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse.so"
   ],
   "libpulse.so.0": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse.so.0",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse.so.0"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse.so.0",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse.so.0"
   ],
   "libpulse.so.0.24.0": [
-    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse.so.0.24.0",
-    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse.so.0.24.0"
+    "/nix/store/9a7xafzx90rfxck2vg2h10ywcd8lcvss-pulseaudio-15.0/lib/libpulse.so.0.24.0",
+    "/nix/store/gb767n6kyx81a0n3fc75vwhs3ngvj2yp-libpulseaudio-15.0/lib/libpulse.so.0.24.0"
   ],
   "libqhull_r.so": [
     "/nix/store/jbwmmyrbz94ndgs5i9j1syr4s21y5ndv-qhull-2020.2/lib/libqhull_r.so"

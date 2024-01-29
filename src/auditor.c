@@ -90,7 +90,7 @@ done:
   log_write("\n");
 }
 
-char *lookup(const char *libname) {
+char *dynamic_lookup(const char *libname) {
   int libname_len = my_strlen(libname);
   const char *rllp = replit_ld_library_path;
   const char *next_rllp = rllp;
@@ -145,11 +145,11 @@ unsigned int la_version(unsigned int version) {
 }
 
 char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
-  log_write("la_objsearch(");
-  log_write(name);
-  log_write(", ");
-  log_write_int(flag);
-  log_write(")\n");
+  // log_write("la_objsearch(");
+  // log_write(name);
+  // log_write(", ");
+  // log_write_int(flag);
+  // log_write(")\n");
   if (flag == LA_SER_DEFAULT) {
     char *libname = my_strrchr(name, '/');
     if (libname != NULL) {
@@ -157,18 +157,48 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
       log_write("ld library miss for ");
       log_write(libname);
       log_write("\n  searching...\n");
-      char *result = lookup(libname);
-      if (result != NULL) {
-        log_write("  found: ");
-        log_write(result);
-        log_write("\n");
-        return result;
-      } else {
-        log_write("  not found.\n");
+      char *result = NULL;
+      if (nix_channel != CHANNEL_UNKNOWN) {
+        result = static_lookup(nix_channel, libname);
+        if (result != NULL) {
+          log_write("  found statically: ");
+          log_write(result);
+          log_write("\n");
+          return result;
+        }
       }
+      if (result == NULL) {
+        result = dynamic_lookup(libname);
+        if (result != NULL) {
+          log_write("  found dynamically: ");
+          log_write(result);
+          log_write("\n");
+          return result;
+        }
+      }
+      log_write("  not found.\n");
     }
   }
   return (char *)name;
+}
+
+char *nix_channel_str(int channel) {
+  switch (nix_channel) {
+    case CHANNEL_23_11:
+    return "stable-23_11";
+    break;
+    case CHANNEL_23_05:
+    return "stable-23_05";
+    break;
+    case CHANNEL_22_11:
+    return "stable-22_11";
+    break;
+    case CHANNEL_22_05:
+    return "stable-22_05";
+    break;
+    default:
+    return "invalid";
+  }
 }
 
 unsigned int la_objopen(struct link_map *map, Lmid_t lmid,
@@ -180,22 +210,7 @@ unsigned int la_objopen(struct link_map *map, Lmid_t lmid,
     nix_channel = get_nix_channel(map->l_name);
     if (nix_channel != CHANNEL_UNKNOWN) {
       log_write("Found Nix channel: ");
-      switch (nix_channel) {
-        case CHANNEL_23_11:
-        log_write("stable-23_11");
-        break;
-        case CHANNEL_23_05:
-        log_write("stable-23_05");
-        break;
-        case CHANNEL_22_11:
-        log_write("stable-22_11");
-        break;
-        case CHANNEL_22_05:
-        log_write("stable-22_05");
-        break;
-        default:
-        log_write("invalid");
-      }
+      log_write(nix_channel_str(nix_channel));
       log_write("\n");
     }
   }

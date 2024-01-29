@@ -78,17 +78,17 @@ int my_strlen(const char *str) {
   return i;
 }
 
-int strstartswith(const char *str, const char *prefix) {
+int strstartswith(const char *prefix, const char *str) {
   while (1) {
     char strCh = *str;
-    char prefixCh = *prefixCh;
+    char prefixCh = *prefix;
     if (prefixCh == '\0') {
       return 1;
     }
     if (strCh != prefixCh) {
       return 0;
     }
-    if (chrCh == '\0') {
+    if (strCh == '\0') {
       return 1;
     }
     str++;
