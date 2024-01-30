@@ -112,9 +112,10 @@ int itoa(int value, char *sp, int radix)
 These functions are DIY because the glibc versions are too complicated
 */
 
+// https://linux.die.net/man/3/strrchr
 char *my_strrchr(const char *haystack, char needle) {
   int len = my_strlen(haystack);
-  for (int i = len - 1; i > 0; i--) {
+  for (int i = len - 1; i >= 0; i--) {
     char chr = haystack[i];
     if (chr == needle) {
       return (char *)&haystack[i];
@@ -123,6 +124,7 @@ char *my_strrchr(const char *haystack, char needle) {
   return NULL;
 }
 
+// https://linux.die.net/man/3/strchrnul
 char *my_strchrnul(const char *haystack, char needle) {
   for (int i = 0; ; i++) {
     char chr = haystack[i];
@@ -135,21 +137,18 @@ char *my_strchrnul(const char *haystack, char needle) {
   }
 }
 
-char *my_strncpy(char * destination, const char * source, size_t num) {
-  int ended = 0;
-  for (int i = 0; i < num; i++) {
-    char chr = source[i];
-    if (ended) {
-      destination[i] = '\0';
-      continue;
-    }
-    destination[i] = chr;
-    if (chr == '\0') {
-      ended = 1;
-    }
-  }
+// Taken from https://linux.die.net/man/3/strncpy
+char *
+my_strncpy(char *dest, const char *src, size_t n)
+{
+    size_t i;
 
-  return destination;
+   for (i = 0; i < n && src[i] != '\0'; i++)
+        dest[i] = src[i];
+    for ( ; i < n; i++)
+        dest[i] = '\0';
+
+   return dest;
 }
 
 int my_strlen(const char *str) {

@@ -2,13 +2,18 @@
 #include "syscalls.h"
 #include <fcntl.h>
 #include "env_parser.h"
+#include "consts.h"
 
-// simple state-based parser to read REPLIT_LD_LIBRARY_PATH, and REPLIT_RTLD_LOG_LEVEL
-// value from /proc/self/environ
+/*
+  Simple state-based parser to read
+  * REPLIT_LD_LIBRARY_PATH - colon-separated directory paths
+  * REPLIT_RTLD_LOG_LEVEL - 0, 1, or 2 for verbosity
+  from a file descriptor pointing to /proc/self/environ
+*/
+
 void parse_env(
-  char *replit_ld_library_path_buffer, 
-  int replit_ld_library_path_max_length) {
-  int fd = sys_open("/proc/self/environ", O_RDONLY, 0);
+  int fd,
+  char *replit_ld_library_path_buffer) {
   char buf[1024];
   char varname[1024];
   int varnameCursor = 0;
@@ -41,9 +46,9 @@ void parse_env(
           varnameCursor = 0;
         }
       } else if (mode == PARSE_LD_LIBRARY_PATH) {
-        if (ldLibraryPathCursor >= replit_ld_library_path_max_length - 1) {
+        if (ldLibraryPathCursor >= MAX_LD_LIBRARY_PATH_LENGTH - 1) {
           // too long. truncate it
-            replit_ld_library_path_buffer[replit_ld_library_path_max_length - 1] = '\0';
+            replit_ld_library_path_buffer[MAX_LD_LIBRARY_PATH_LENGTH - 1] = '\0';
           goto done;
         } else if (chr == '\0') {
             replit_ld_library_path_buffer[ldLibraryPathCursor] = '\0';
@@ -56,5 +61,4 @@ void parse_env(
   }
 
 done:
-  sys_close(fd);
 }

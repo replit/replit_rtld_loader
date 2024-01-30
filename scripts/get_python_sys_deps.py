@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
 import json
+import subprocess
 
-f = open('upm/internal/nix/python_map.json', 'r')
-data = json.load(f)
-# print(data)
-f.close()
+python_map_url = 'https://raw.githubusercontent.com/replit/upm/main/internal/nix/python_map.json'
+
+output = subprocess.check_output(['curl', python_map_url])
+data = json.loads(output)
 
 deps = set()
 
@@ -34,3 +35,4 @@ output = """
 
 with open("replit.nix", "w") as f:
   f.write(output)
+  print('Wrote replit.nix')

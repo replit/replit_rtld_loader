@@ -1,9 +1,8 @@
-#include "auditor.h"
+#include "rtld_loader.h"
 
 static int nix_channel = CHANNEL_UNKNOWN;
 static int audit_log_fd;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
-static char search_result[MAX_PATH_LENGTH] = {0};
 
 void fprint(int fd, const char *message) {
   int len = my_strlen(message);
@@ -29,53 +28,14 @@ void log_write_int(int num) {
 }
 
 void log_init() {
-  audit_log_fd = sys_open("audit.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-}
-
-char *dynamic_lookup(const char *libname) {
-  int libname_len = my_strlen(libname);
-  const char *rllp = replit_ld_library_path;
-  const char *next_rllp = rllp;
-  while (*next_rllp) {
-    rllp = next_rllp;
-    next_rllp = my_strchrnul(rllp, ':');
-
-    size_t rllp_len = next_rllp - rllp;
-    if (*next_rllp) {
-      next_rllp++;
-    }
-
-    char current_lib_path[MAX_PATH_LENGTH] = {0};
-    if (rllp_len + libname_len + 2 > sizeof(current_lib_path)) {
-      // We need the lib_path to be able to fit the path, the separating slash,
-      // the filename, and the null terminator.
-      continue;
-    }
-    // TODO: check for path too long for buffer
-    my_strncpy(current_lib_path, rllp, rllp_len);
-    char *lib_path_suffix = current_lib_path + rllp_len;
-    lib_path_suffix[0] = '/';
-    my_strncpy(lib_path_suffix + 1, libname, libname_len);
-    int lib_path_len = rllp_len + 1 + libname_len;
-    lib_path_suffix[1 + libname_len] = '\0';
-
-    log_write("  trying ");
-    log_write(current_lib_path);
-    log_write("\n");
-    // check if we can read the file (i.e. it exists and we can read it).
-    if (sys_access(current_lib_path, R_OK) == 0) {
-      my_strncpy(search_result, current_lib_path, lib_path_len);
-      search_result[lib_path_len] = '\0';
-      return search_result;
-    }
-  }
-
-  return NULL;
+  audit_log_fd = sys_open("rtld_loader.log", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
 
 __attribute__((constructor))
 static void init(void) {
-  parse_env(replit_ld_library_path, MAX_LD_LIBRARY_PATH_LENGTH);
+  int fd = sys_open("/proc/self/environ", O_RDONLY, 0);
+  parse_env(fd, replit_ld_library_path);
+  sys_close(fd);
   log_init();
 }
 
@@ -110,7 +70,7 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
         }
       }
       if (result == NULL) {
-        result = dynamic_lookup(libname);
+        result = dynamic_lookup(libname, replit_ld_library_path);
         if (result != NULL) {
           log_write("  found dynamically: ");
           log_write(result);
@@ -122,25 +82,6 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
     }
   }
   return (char *)name;
-}
-
-char *nix_channel_str(int channel) {
-  switch (nix_channel) {
-    case CHANNEL_STABLE_23_11:
-    return "stable-23_11";
-    break;
-    case CHANNEL_STABLE_23_05:
-    return "stable-23_05";
-    break;
-    case CHANNEL_STABLE_22_11:
-    return "stable-22_11";
-    break;
-    case CHANNEL_STABLE_22_05:
-    return "stable-22_05";
-    break;
-    default:
-    return "invalid";
-  }
 }
 
 unsigned int la_objopen(struct link_map *map, Lmid_t lmid,

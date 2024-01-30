@@ -1,0 +1,1 @@
+char *dynamic_lookup(const char *libname, const char *ld_library_path);

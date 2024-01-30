@@ -48,12 +48,29 @@ def gen_lookup_fn(lines):
   lines.append('  return NULL;')
   lines.append('}')
 
+def gen_nix_channel_str_fn(lines):
+  lines.append('')
+  lines.append('char *nix_channel_str(int channel) {')
+  lines.append('  switch (channel) {')
+  entries = os.listdir('registry')
+  for entry in entries:
+    with open('registry/%s' % entry) as f:
+      channel = strip_ext(entry)
+      const_name = channel_const_name(channel)
+      lines.append('    case %s:' % const_name)
+      lines.append('    return "%s";' % channel)
+      lines.append('    break;')
+  lines.append('    default:')
+  lines.append('    return "invalid";')
+  lines.append('  }')
+  lines.append('}')
+
 def gen_lib_entry_arrays(lines):
   entries = os.listdir('registry')
   for entry in entries:
     array_name = 'lib_entries_%s' % strip_ext(entry).replace('-', '_')
     gen_static_array_for('registry/%s' % entry, array_name, lines)
-    lines.append('};');
+    lines.append('};')
     lines.append('')
 
 def gen_c_file():
@@ -71,6 +88,7 @@ def gen_c_file():
   gen_lib_entry_arrays(lines)
   gen_get_nix_channel_fn(lines)
   gen_lookup_fn(lines)
+  gen_nix_channel_str_fn(lines)
   
   with open('src/lookup_by_channel.generated.c', 'w') as f:
     f.write("\n".join(lines))
@@ -91,6 +109,7 @@ def gen_h_file():
   lines.append('')
   lines.append('int get_nix_channel(const char *libpath);')
   lines.append('char *lookup_by_channel(int nix_channel, const char *libname);')
+  lines.append('char *nix_channel_str(int channel);')
   with open('src/lookup_by_channel.generated.h', 'w') as f:
     f.write("\n".join(lines))
 
