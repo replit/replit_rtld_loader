@@ -14,9 +14,3 @@
 #define PARSE_VARNAME               0
 #define PARSE_VALUE                 1
 #define PARSE_LD_LIBRARY_PATH       2
-
-#define CHANNEL_UNKNOWN             0
-#define CHANNEL_23_11               1
-#define CHANNEL_23_05               2
-#define CHANNEL_22_11               3
-#define CHANNEL_22_05               4

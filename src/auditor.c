@@ -159,7 +159,7 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
       log_write("\n  searching...\n");
       char *result = NULL;
       if (nix_channel != CHANNEL_UNKNOWN) {
-        result = static_lookup(nix_channel, libname);
+        result = lookup_by_channel(nix_channel, libname);
         if (result != NULL) {
           log_write("  found statically: ");
           log_write(result);
@@ -184,16 +184,16 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
 
 char *nix_channel_str(int channel) {
   switch (nix_channel) {
-    case CHANNEL_23_11:
+    case CHANNEL_STABLE_23_11:
     return "stable-23_11";
     break;
-    case CHANNEL_23_05:
+    case CHANNEL_STABLE_23_05:
     return "stable-23_05";
     break;
-    case CHANNEL_22_11:
+    case CHANNEL_STABLE_22_11:
     return "stable-22_11";
     break;
-    case CHANNEL_22_05:
+    case CHANNEL_STABLE_22_05:
     return "stable-22_05";
     break;
     default:
@@ -203,9 +203,9 @@ char *nix_channel_str(int channel) {
 
 unsigned int la_objopen(struct link_map *map, Lmid_t lmid,
  uintptr_t *cookie) {
-  log_write("la_objopen(");
-  log_write(map->l_name);
-  log_write(")\n");
+  // log_write("la_objopen(");
+  // log_write(map->l_name);
+  // log_write(")\n");
   if (nix_channel == CHANNEL_UNKNOWN) {
     nix_channel = get_nix_channel(map->l_name);
     if (nix_channel != CHANNEL_UNKNOWN) {

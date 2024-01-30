@@ -6,4 +6,4 @@
 #include "syscalls.h"
 #include "string_funs.h"
 #include "consts.h"
-#include "static_lookup.h"
+#include "lookup_by_channel.generated.h"
