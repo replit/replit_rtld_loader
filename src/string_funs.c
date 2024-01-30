@@ -137,18 +137,22 @@ char *my_strchrnul(const char *haystack, char needle) {
   }
 }
 
-// Taken from https://linux.die.net/man/3/strncpy
-char *
-my_strncpy(char *dest, const char *src, size_t n)
-{
-    size_t i;
+// https://linux.die.net/man/3/strncpy
+char *my_strncpy(char * destination, const char * source, size_t num) {
+  int ended = 0;
+  for (int i = 0; i < num; i++) {
+    char chr = source[i];
+    if (ended) {
+      destination[i] = '\0';
+      continue;
+    }
+    destination[i] = chr;
+    if (chr == '\0') {
+      ended = 1;
+    }
+  }
 
-   for (i = 0; i < n && src[i] != '\0'; i++)
-        dest[i] = src[i];
-    for ( ; i < n; i++)
-        dest[i] = '\0';
-
-   return dest;
+  return destination;
 }
 
 int my_strlen(const char *str) {
