@@ -13,7 +13,6 @@
 #include "lookup_by_channel.generated.h"
 
 static int nix_channel = CHANNEL_UNKNOWN;
-static int audit_log_fd;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
 
 __attribute__((constructor))

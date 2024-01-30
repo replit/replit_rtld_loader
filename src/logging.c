@@ -3,7 +3,7 @@
 #include "string_funs.h"
 #include "logging.h"
 
-static int audit_log_fd;
+static int audit_log_fd = -1;
 
 void fprint(int fd, const char *message) {
   int len = my_strlen(message);
@@ -21,9 +21,15 @@ void log_init() {
 }
 
 void log_write(const char *message) {
+  if (audit_log_fd == -1) {
+    return;
+  }
   fprint(audit_log_fd, message);
 }
 
 void log_write_int(int num) {
+  if (audit_log_fd == -1) {
+    return;
+  }
   fprint_int(audit_log_fd, num);
 }
