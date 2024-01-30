@@ -15,7 +15,7 @@ void parse_env(
   int fd,
   char *replit_ld_library_path_buffer) {
   char buf[1024];
-  char varname[1024];
+  char varname[MAX_VARNAME_LENGTH];
   int varnameCursor = 0;
   int mode = PARSE_VARNAME;
   int ldLibraryPathCursor = 0;
