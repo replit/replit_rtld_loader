@@ -5,7 +5,7 @@
 
 // simple state-based parser to read REPLIT_LD_LIBRARY_PATH, and REPLIT_RTLD_LOG_LEVEL
 // value from /proc/self/environ
-void parse_ld_library_path(
+void parse_env(
   char *replit_ld_library_path_buffer, 
   int replit_ld_library_path_max_length) {
   int fd = sys_open("/proc/self/environ", O_RDONLY, 0);

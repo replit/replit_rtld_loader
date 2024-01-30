@@ -75,7 +75,7 @@ char *dynamic_lookup(const char *libname) {
 
 __attribute__((constructor))
 static void init(void) {
-  parse_ld_library_path(replit_ld_library_path, MAX_LD_LIBRARY_PATH_LENGTH);
+  parse_env(replit_ld_library_path, MAX_LD_LIBRARY_PATH_LENGTH);
   log_init();
 }
 

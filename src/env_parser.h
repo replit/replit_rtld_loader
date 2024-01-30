@@ -3,4 +3,4 @@
 #define PARSE_VALUE                 1
 #define PARSE_LD_LIBRARY_PATH       2
 
-void parse_ld_library_path();
+void parse_env();

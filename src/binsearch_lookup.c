@@ -9,7 +9,7 @@ char *binsearch_lookup(const char *libname, struct LibEntry *entries, int entrie
   while (1) {
     int mid = left + (right - left) / 2; // same as (right + left) / 2
                                          // but prevents int overflow
-    int result = my_strcmp(libname, entries[mid].libname);
+    int result = strcmp(libname, entries[mid].libname);
     if (result == 0) {
       // found it
       return entries[mid].libpath;
