@@ -1,4 +1,4 @@
 *.generated.*
-loader.so
-binsearch_test
-audit.txt
+*.so
+*.bin
+*.log
