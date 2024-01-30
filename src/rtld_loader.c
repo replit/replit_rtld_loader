@@ -1,35 +1,20 @@
-#include "rtld_loader.h"
+#define _GNU_SOURCE
+
+#include <link.h>
+#include <stdint.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include "logging.h"
+#include "syscalls.h"
+#include "string_funs.h"
+#include "consts.h"
+#include "env_parser.h"
+#include "dynamic_lookup.h"
+#include "lookup_by_channel.generated.h"
 
 static int nix_channel = CHANNEL_UNKNOWN;
 static int audit_log_fd;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
-
-void fprint(int fd, const char *message) {
-  int len = my_strlen(message);
-  sys_write(fd, message, len);
-}
-
-void fprint_int(int fd, int num) {
-  char int_str[15];
-  int len = itoa(num, int_str, 10);
-  sys_write(fd, int_str, len);
-}
-
-void print(const char *message) {
-  fprint(1, message);
-}
-
-void log_write(const char *message) {
-  fprint(audit_log_fd, message);
-}
-
-void log_write_int(int num) {
-  fprint_int(audit_log_fd, num);
-}
-
-void log_init() {
-  audit_log_fd = sys_open("rtld_loader.log", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-}
 
 __attribute__((constructor))
 static void init(void) {
