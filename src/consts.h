@@ -5,12 +5,5 @@
 #define	LA_SER_DEFAULT	0x40	/* default path prepended */
 #define	LA_SER_SECURE	0x80	/* default (secure) path prepended */
 
-#define REPLIT_LD_LIBRARY_PATH "REPLIT_LD_LIBRARY_PATH"
-
 #define MAX_LD_LIBRARY_PATH_LENGTH  65535
 #define MAX_PATH_LENGTH             4096
-
-// Parser modes
-#define PARSE_VARNAME               0
-#define PARSE_VALUE                 1
-#define PARSE_LD_LIBRARY_PATH       2

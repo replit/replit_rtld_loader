@@ -32,64 +32,6 @@ void log_init() {
   audit_log_fd = sys_open("audit.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 }
 
-// simple state-based parser to grab REPLIT_LD_LIBRARY_PATH
-// value from /proc/self/environ and store it in
-// replit_ld_library_path global
-void parse_ld_library_path() {
-  int fd = sys_open("/proc/self/environ", O_RDONLY, 0);
-  char buf[1024];
-  char varname[1024];
-  int varnameCursor = 0;
-  int mode = PARSE_VARNAME;
-  int ldLibraryPathCursor = 0;
-  while (1) {
-    int bytes = sys_read(fd, buf, sizeof(buf));
-    if (bytes <= 0) {
-      break;
-    }
-    for (int i = 0; i < bytes; i++) {
-      char chr = buf[i];
-      if (mode == PARSE_VARNAME) {
-        if (chr == '=') {
-          if (strneql(varname, REPLIT_LD_LIBRARY_PATH, varnameCursor)) {
-            mode = PARSE_LD_LIBRARY_PATH;
-            ldLibraryPathCursor = 0;
-          } else {
-            mode = PARSE_VALUE;
-          }
-        } else {
-          if (varnameCursor >= sizeof(varname)) {
-            continue; // truncate the varname if too long
-          }
-          varname[varnameCursor++] = chr;
-        }
-      } else if (mode == PARSE_VALUE) {
-        if (chr == '\0') {
-          mode = PARSE_VARNAME;
-          varnameCursor = 0;
-        }
-      } else if (mode == PARSE_LD_LIBRARY_PATH) {
-        if (ldLibraryPathCursor >= sizeof(replit_ld_library_path) - 1) {
-          // too long. truncate it
-          replit_ld_library_path[sizeof(replit_ld_library_path) - 1] = '\0';
-          goto done;
-        } else if (chr == '\0') {
-          replit_ld_library_path[ldLibraryPathCursor] = '\0';
-          goto done;
-        } else {
-          replit_ld_library_path[ldLibraryPathCursor++] = chr;
-        }
-      }
-    }
-  }
-
-done:
-  sys_close(fd);
-  log_write("REPLIT_LD_LIBRARY_PATH=");
-  log_write(replit_ld_library_path);
-  log_write("\n");
-}
-
 char *dynamic_lookup(const char *libname) {
   int libname_len = my_strlen(libname);
   const char *rllp = replit_ld_library_path;
@@ -133,8 +75,8 @@ char *dynamic_lookup(const char *libname) {
 
 __attribute__((constructor))
 static void init(void) {
+  parse_ld_library_path(replit_ld_library_path, MAX_LD_LIBRARY_PATH_LENGTH);
   log_init();
-  parse_ld_library_path();
 }
 
 unsigned int la_version(unsigned int version) {
