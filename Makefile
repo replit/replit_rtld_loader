@@ -1,5 +1,5 @@
 .PHONY: all
-all: loader.so
+all: rtld_loader.so
 
 .PHONY: test
 test: binsearch_test.bin string_funs_test.bin env_parser_test.bin
@@ -7,8 +7,8 @@ test: binsearch_test.bin string_funs_test.bin env_parser_test.bin
 	./string_funs_test.bin
 	./env_parser_test.bin
 
-loader.so: $(shell find src -type f) src/lookup_by_channel.generated.c
-	gcc -shared -nostdlib -fno-stack-protector -fPIC -O2 src/*.c -o loader.so
+rtld_loader.so: $(shell find src -type f) src/lookup_by_channel.generated.c
+	gcc -shared -nostdlib -fno-stack-protector -fPIC -O2 src/*.c -o rtld_loader.so
 
 src/lookup_by_channel.generated.c: scripts/gen_lookup_by_channel.py $(shell find registry -type f)
 	scripts/gen_lookup_by_channel.py
@@ -24,5 +24,5 @@ env_parser_test.bin: test/env_parser_test.c src/env_parser.c src/string_funs.c s
 
 .PHONY: clean
 clean:
-	rm loader.so
+	rm rtld_loader.so
 	rm *.bin

@@ -3,7 +3,6 @@
 #include <fcntl.h>
 #include "env_parser.h"
 #include "consts.h"
-#include "logging.h"
 
 /*
   Simple state-based parser to read

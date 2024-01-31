@@ -13,5 +13,5 @@ export PYTHONPATH
 unset PYTHONNOUSERSITE
 
 export LD_LIBRARY_PATH=
-export LD_AUDIT=$REPL_HOME/loader.so
+export LD_AUDIT=$REPL_HOME/rtld_loader.so
 exec "python3" "$@"

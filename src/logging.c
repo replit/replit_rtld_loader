@@ -33,10 +33,3 @@ void log_write_int(int num) {
   }
   fprint_int(audit_log_fd, num);
 }
-
-void log_write_n(const char *message, int len) {
-  if (audit_log_fd == -1) {
-    return;
-  }
-  sys_write(audit_log_fd, message, len);
-}
