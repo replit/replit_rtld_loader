@@ -18,16 +18,16 @@ char *dynamic_lookup(const char *libname, const char *ld_library_path) {
 
     size_t rllp_len = next_rllp - rllp;
     if (*next_rllp) {
+      // Advance past colon
       next_rllp++;
     }
 
     char current_lib_path[MAX_PATH_LENGTH] = {0};
     if (rllp_len + libname_len + 2 > sizeof(current_lib_path)) {
       // We need the lib_path to be able to fit the path, the separating slash,
-      // the filename, and the null terminator.
+      // the filename, and the null terminator. If not, we are ignoring it
       continue;
     }
-    // TODO: check for path too long for buffer
     my_strncpy(current_lib_path, rllp, rllp_len);
     char *lib_path_suffix = current_lib_path + rllp_len;
     lib_path_suffix[0] = '/';
