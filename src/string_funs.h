@@ -1,5 +1,9 @@
 #include <stddef.h>
 
+/*
+All string functions are vendored or DIY.
+*/
+
 // Functions copied verbatim from glibc
 int strcmp (const char *p1, const char *p2);
 int strncmp (const char *s1, const char *s2, size_t n);

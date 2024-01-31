@@ -34,3 +34,13 @@ You can control the loader's log level via the `REPLIT_RTLD_LOG_LEVEL` environme
 * 3 - debug
 
 Also see env_parser.h and logging.h
+
+## Self Reliance
+
+We are not using libc at all to avoid any libc conflicts with
+the running binary. It might be possible compile libc statically into
+rtld_loader.so using musl or similar, but I had a hard time with musl in
+last attempt. So:
+
+* we call system calls directly for file system access
+* we vendor or DIY string functions

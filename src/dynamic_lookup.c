@@ -4,6 +4,8 @@
 #include <fcntl.h>
 #include "logging.h"
 
+// We cannot using malloc, so here is the buffer used to return
+// search results.
 static char search_result[MAX_PATH_LENGTH] = {0};
 
 char *dynamic_lookup(const char *libname, const char *ld_library_path) {
