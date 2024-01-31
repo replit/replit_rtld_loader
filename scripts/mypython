@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# A python wrapper that uses LD_AUDIT with rtld loader for testing.
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+PYTHONPATH=${REPL_HOME}/.pythonlibs/lib/python3.10/site-packages
+PYTHONPATH=${PYTHONPATH:+':'$PYTHONPATH':'}
+PYTHONPATH=${PYTHONPATH/':''/nix/store/icx0zbk2r2qrpnqpd41q4h4xzr856d4f-python3.10-setuptools-67.4.0/lib/python3.10/site-packages'':'/':'}
+PYTHONPATH='/nix/store/icx0zbk2r2qrpnqpd41q4h4xzr856d4f-python3.10-setuptools-67.4.0/lib/python3.10/site-packages'$PYTHONPATH
+PYTHONPATH=${PYTHONPATH#':'}
+PYTHONPATH=${PYTHONPATH%':'}
+export PYTHONPATH
+unset PYTHONNOUSERSITE
+
+export LD_LIBRARY_PATH=
+export LD_AUDIT=$REPL_HOME/rtld_loader.so
+exec "python3" "$@"
