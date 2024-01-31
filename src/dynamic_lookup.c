@@ -2,6 +2,7 @@
 #include "syscalls.h"
 #include "consts.h"
 #include <fcntl.h>
+#include "logging.h"
 
 static char search_result[MAX_PATH_LENGTH] = {0};
 
@@ -32,9 +33,9 @@ char *dynamic_lookup(const char *libname, const char *ld_library_path) {
     int lib_path_len = rllp_len + 1 + libname_len;
     lib_path_suffix[1 + libname_len] = '\0';
 
-    // log_write("  trying ");
-    // log_write(current_lib_path);
-    // log_write("\n");
+    log_debug("  trying ");
+    log_debug(current_lib_path);
+    log_debug("\n");
     // check if we can read the file (i.e. it exists and we can read it).
     if (sys_access(current_lib_path, R_OK) == 0) {
       my_strncpy(search_result, current_lib_path, lib_path_len);
