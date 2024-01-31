@@ -6,8 +6,10 @@ the [rtld-audit API](https://man7.org/linux/man-pages/man7/rtld-audit.7.html)
 to observe a process' library loading activity to learn which Nix channel
 the binary was built from (if any), and then resolves dynamic libraries loading requests
 for the process from a list of known Nix packages from the matching Nix channel to make sure
-they are compatible. It is a better alternative than the LD_LIBRARY_PATH variable because
-rather than overriding the default behavior of the system loader, it acts as a fallback.
+they are compatible. It is a better alternative than using `LD_LIBRARY_PATH` because:
+
+1. rather than overriding the default behavior of the system loader, it acts as a fallback
+2. it is aware of how Nix-built binaries work
 
 See [LD_AUDIT-based Shared Library Loader Experiments](https://docs.google.com/document/d/1llRzZdBZIKDFk5n5NQromYMCeDaYUCB9pVLy2vahTH4)
 for more background.
