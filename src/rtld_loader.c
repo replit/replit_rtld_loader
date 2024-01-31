@@ -14,11 +14,12 @@
 
 static int nix_channel = CHANNEL_UNKNOWN;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
+static int log_level;
 
 __attribute__((constructor))
 static void init(void) {
   int fd = sys_open("/proc/self/environ", O_RDONLY, 0);
-  parse_env(fd, replit_ld_library_path);
+  parse_env(fd, replit_ld_library_path, &log_level);
   sys_close(fd);
   log_init();
 }
