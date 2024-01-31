@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# A python wrapper that uses LD_AUDIT with rtld loader for testing.
+
 set -o errexit
 set -o nounset
 set -o pipefail

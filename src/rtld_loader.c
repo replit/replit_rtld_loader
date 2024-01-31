@@ -1,3 +1,8 @@
+/*
+Entrypoint of the rtld loader. It uses the rtld-audit API provided by Linux:
+https://man7.org/linux/man-pages/man7/rtld-audit.7.html
+*/
+
 #define _GNU_SOURCE
 
 #include <link.h>

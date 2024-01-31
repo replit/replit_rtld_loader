@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+# This script takes a each path element in REPLIT_LD_LIBRARY_PATH, looks for .so
+# files within it, and uses them to generate a registry .json for a the Nix channel
+# specified in .replit
+# These .json files are then checked in.
+# This is meant to be used in a Repl
+
 import os
 import re
 import json

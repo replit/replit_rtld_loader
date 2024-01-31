@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+# This script checks to ensure each referenced shared library object file in the registry .json files
+# are already present in the cacache disk
+# It is meant to be used in a Repl
+
 import os
 import json
 

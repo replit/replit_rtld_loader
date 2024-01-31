@@ -69,8 +69,6 @@ strncmp (const char *s1, const char *s2, size_t n)
 }
 
 // Taken from https://stackoverflow.com/a/12386915
-// Yet, another good itoa implementation
-// returns: the length of the number string
 int itoa(int value, char *sp, int radix)
 {
     char tmp[16];// be careful with the length of the buffer

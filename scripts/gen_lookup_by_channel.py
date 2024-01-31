@@ -1,5 +1,12 @@
 #!/usr/bin/env python
 
+# This script generates src/lookup_by_channel.generated.[ch] files.
+# The generated files provide a lookup_by_channel(nix_channel, libname) function
+# that resolves libaries based on a list of known Nix packages for each supported
+# Nix channel. It converts the .json files in the registry directory into
+# pre-sorted static arrays of LibEntry structs.
+# The lookup implementation uses binary search on those arrays.
+
 import os
 import json
 
@@ -98,7 +105,8 @@ def gen_h_file():
     '/*',
     'This is an auto-generated file via scripts/gen_lookup_by_channel.py',
     '*/',
-    '#define CHANNEL_UNKNOWN    0'
+    '#define CHANNEL_UNKNOWN    0',
+    '// Available Nix channels:',
   ]
   counter = 1
   entries = os.listdir('registry')
@@ -107,8 +115,18 @@ def gen_h_file():
     lines.append('#define %s    %d' % (const_name, counter))
     counter += 1
   lines.append('')
+  lines.append('// Find the Nix channel based on the absolute path of libc.so. Return CHANNEL_UNKNOWN if no match.')
   lines.append('int get_nix_channel(const char *libpath);')
+  lines.append('')
+  lines.append('// Lookup a library based a list of known libraries from Nix')
+  lines.append('// * nix_channel - the Nix channel to search')
+  lines.append('// * libname - the name of the library')
+  lines.append('// Return value')
+  lines.append('//   string containing absolute path of the shared object file. NULL if not found.')
   lines.append('char *lookup_by_channel(int nix_channel, const char *libname);')
+  lines.append('')
+  
+  lines.append('// Get a display string for a Nix channel')
   lines.append('char *nix_channel_str(int channel);')
   with open('src/lookup_by_channel.generated.h', 'w') as f:
     f.write("\n".join(lines))

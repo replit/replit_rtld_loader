@@ -1,6 +1,7 @@
 #define DEBUG   3
 #define INFO    2
 #define WARN    1
+#define OFF     0
 
 /*
 Initializes the logger, setting the log level. If log level == 0,
@@ -17,7 +18,7 @@ void log_write(const char *message, int level);
 void log_write_int(int num, int level);
 
 /*
-  The functions below are just conviniences for log and log_int with
+  The functions below are just conviniences for log_write and log_write_int with
  predefined levels.
 */
 void log_info(const char *message);

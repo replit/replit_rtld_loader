@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# This script finds each referenced Nix package in UPM's python_map.json and adds them to replit.nix
+# It is meant to be used in a Repl
+
 import json
 import subprocess
 
