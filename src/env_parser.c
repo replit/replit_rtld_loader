@@ -34,7 +34,7 @@ void parse_env(
           } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL", varnameCursor)) {
             state = PARSE_LOG_LEVEL;
           } else {
-            state = PARSE_VALUE;
+            state = PARSE_IGNORED;
           }
         } else {
           if (varnameCursor >= sizeof(varname)) {
