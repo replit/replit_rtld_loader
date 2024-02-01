@@ -23,7 +23,7 @@ char *dynamic_lookup(const char *libname, const char *ld_library_path) {
     }
 
     char current_lib_path[MAX_PATH_LENGTH] = {0};
-    if (rllp_len + libname_len + 2 > sizeof(current_lib_path)) {
+    if (rllp_len + libname_len + 2 > MAX_PATH_LENGTH) {
       // We need the lib_path to be able to fit the path, the separating slash,
       // the filename, and the null terminator. If not, we are ignoring it
       continue;
