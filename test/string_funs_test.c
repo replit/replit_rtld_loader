@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <assert.h>
 #include "string_funs.h"
+#include <assert.h>
+#include <stdio.h>
 
 void test_my_strrchr() {
   char str[] = "zbcabc";
@@ -26,7 +26,7 @@ void test_my_strncpy() {
   char dest2[6] = "XXXXX";
   char dest3[6] = "XXXXX";
   char str[] = "abc";
-  
+
   my_strncpy(dest1, str, 3);
   assert(streql(dest1, "abcXX"));
 

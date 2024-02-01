@@ -7,7 +7,7 @@ LD_LIBRARY_PATH works.
 * ld_library_path - a colon-separated string of directory paths to be searched
 
 Return value
-  a string containing the absolute path of the shared object file if found, otherwise
-  NULL
+  a string containing the absolute path of the shared object file if found,
+otherwise NULL
 */
-const char *dynamic_lookup(const char *libname, const char *ld_library_path);
+const char* dynamic_lookup(const char* libname, const char* ld_library_path);
