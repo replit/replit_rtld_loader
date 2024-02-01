@@ -12,7 +12,7 @@ void fprint(int fd, const char *message) {
 }
 
 void fprint_int(int fd, int num) {
-  char int_str[15];
+  char int_str[MAX_DECIMAL_INT_LEN];
   int len = itoa(num, int_str, 10);
   sys_write(fd, int_str, len);
 }
