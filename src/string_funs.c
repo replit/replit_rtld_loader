@@ -75,7 +75,8 @@ int itoa(int value, char *sp, int radix)
     char *tp = tmp;
     int i;
     unsigned v;
-
+    if (radix < 2 || radix > 36)
+      return -1;
     int sign = (radix == 10 && value < 0);    
     if (sign)
         v = -value;
