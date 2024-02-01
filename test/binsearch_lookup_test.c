@@ -4,7 +4,7 @@
 #include "string_funs.h"
 
 void test1() {
-  struct LibEntry entries[] = {
+  struct lib_entry entries[] = {
     { .libname = "A", .libpath = "A-out" },
     { .libname = "C", .libpath = "C-out" },
     { .libname = "E", .libpath = "E-out" }
@@ -19,7 +19,7 @@ void test1() {
 }
 
 void test2() {
-  struct LibEntry entries[] = {
+  struct lib_entry entries[] = {
     { .libname = "LLVMgold.so", .libpath = "0" },
     { .libname = "libBrokenLocale.so", .libpath = "A" },
     { .libname = "libBrokenLocale.so.1", .libpath = "B" },

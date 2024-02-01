@@ -2,9 +2,9 @@
 LibEntry is a library entry containing a libname: say libc.so and
 libpath: an absolute file path for locating the file containing the library.
 */
-struct LibEntry {
-  char *libname;
-  char *libpath;
+struct lib_entry {
+  const char *libname;
+  const char *libpath;
 };
 
 /*
@@ -19,4 +19,4 @@ Return value:
   the libpath value for the found entry with matching libname to the passed in libname.
   NULL if not found.
 */
-char *binsearch_lookup(const char *libname, struct LibEntry *entries, int entriesLength);
+const char *binsearch_lookup(const char *libname, struct lib_entry *entries, int entriesLength);
