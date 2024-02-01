@@ -37,7 +37,7 @@ void parse_env(
             state = PARSE_IGNORED;
           }
         } else {
-          if (varnameCursor >= sizeof(varname)) {
+          if (varnameCursor >= MAX_VARNAME_LENGTH) {
             continue; // truncate the varname if too long
           }
           varname[varnameCursor++] = chr;
