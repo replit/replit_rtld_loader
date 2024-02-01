@@ -1,8 +1,10 @@
 // Parser states
-#define PARSE_VARNAME               0
-#define PARSE_IGNORED                 1
-#define PARSE_LD_LIBRARY_PATH       2
-#define PARSE_LOG_LEVEL             3
+enum env_parser_state {
+  PARSE_VARNAME,
+  PARSE_IGNORED,
+  PARSE_LD_LIBRARY_PATH,
+  PARSE_LOG_LEVEL
+};
 
 #define MAX_VARNAME_LENGTH          1024
 

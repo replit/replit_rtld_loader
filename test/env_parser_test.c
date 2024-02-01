@@ -50,9 +50,9 @@ void test2() {
 void test3() {
   char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
   int log_level = -1;
-  char *content = "BLAH=FOOBAR\0REPLIT_RTLD_LOG_LEVEL=2\0";
+  char *content = "BLAH=FOOBAR\0REPLIT_RTLD_LOG_LEVEL=2";
   int fd = sys_open("/tmp/fake_environ.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-  sys_write(fd, content, 36);
+  sys_write(fd, content, 35);
   sys_close(fd);
 
   fd = sys_open("/tmp/fake_environ.txt", O_RDONLY, 0);

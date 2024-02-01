@@ -16,7 +16,7 @@ void parse_env(
   char varname[MAX_VARNAME_LENGTH];
   int varnameCursor = 0;
   int state = PARSE_VARNAME;
-  int ldLibraryPathCursor = 0;
+  int ld_library_path_cursor = 0;
   replit_ld_library_path_buffer[0] = '\0';
   *log_level = 0;
   while (1) {
@@ -30,7 +30,7 @@ void parse_env(
         if (chr == '=') {
           if (strneql(varname, "REPLIT_LD_LIBRARY_PATH", varnameCursor)) {
             state = PARSE_LD_LIBRARY_PATH;
-            ldLibraryPathCursor = 0;
+            ld_library_path_cursor = 0;
           } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL", varnameCursor)) {
             state = PARSE_LOG_LEVEL;
           } else {
@@ -48,17 +48,16 @@ void parse_env(
           varnameCursor = 0;
         }
       } else if (state == PARSE_LD_LIBRARY_PATH) {
-        if (ldLibraryPathCursor >= MAX_LD_LIBRARY_PATH_LENGTH - 1) {
+        if (ld_library_path_cursor >= MAX_LD_LIBRARY_PATH_LENGTH - 1) {
           // too long. truncate it
           replit_ld_library_path_buffer[MAX_LD_LIBRARY_PATH_LENGTH - 1] = '\0';
-          state = PARSE_VARNAME;
-          varnameCursor = 0;
+          state = PARSE_IGNORED;
         } else if (chr == '\0') {
-          replit_ld_library_path_buffer[ldLibraryPathCursor] = '\0';
+          replit_ld_library_path_buffer[ld_library_path_cursor] = '\0';
           state = PARSE_VARNAME;
           varnameCursor = 0;
         } else {
-            replit_ld_library_path_buffer[ldLibraryPathCursor++] = chr;
+          replit_ld_library_path_buffer[ld_library_path_cursor++] = chr;
         }
       } else if (state == PARSE_LOG_LEVEL) {
         if (chr >= '0' && chr <= '9') {
@@ -68,10 +67,7 @@ void parse_env(
         // rest of the value. This means double
         // digit values will not work as expected.
         state = PARSE_IGNORED;
-        varnameCursor = 0;
       }
     }
   }
-
-done:
 }
