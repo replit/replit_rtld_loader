@@ -19,4 +19,4 @@ Return value:
   the libpath value for the found entry with matching libname to the passed in libname.
   NULL if not found.
 */
-char *binsearch_lookup(const char *libname, struct LibEntry *entries, int entriesLength);
+char *binsearch_lookup(const char *libname, const struct LibEntry *entries, size_t entriesLength);
