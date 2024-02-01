@@ -1,6 +1,6 @@
 // Parser states
 #define PARSE_VARNAME               0
-#define PARSE_VALUE                 1
+#define PARSE_IGNORED                 1
 #define PARSE_LD_LIBRARY_PATH       2
 #define PARSE_LOG_LEVEL             3
 

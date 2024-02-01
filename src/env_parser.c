@@ -42,7 +42,7 @@ void parse_env(
           }
           varname[varnameCursor++] = chr;
         }
-      } else if (state == PARSE_VALUE) {
+      } else if (state == PARSE_IGNORED) {
         if (chr == '\0') {
           state = PARSE_VARNAME;
           varnameCursor = 0;
@@ -67,7 +67,7 @@ void parse_env(
         // Only take one character, ignore the
         // rest of the value. This means double
         // digit values will not work as expected.
-        state = PARSE_VALUE;
+        state = PARSE_IGNORED;
         varnameCursor = 0;
       }
     }
