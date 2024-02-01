@@ -48,14 +48,14 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
       log_info("ld library miss for ");
       log_info(libname);
       log_info("\n  searching...\n");
-      char* result = NULL;
+      const char* result = NULL;
       if (nix_channel != CHANNEL_UNKNOWN) {
         result = lookup_by_channel(nix_channel, libname);
         if (result != NULL) {
           log_info("  found statically: ");
           log_info(result);
           log_info("\n");
-          return result;
+          return (char*)result;
         }
       }
       if (result == NULL) {
@@ -64,7 +64,7 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
           log_info("  found dynamically: ");
           log_info(result);
           log_info("\n");
-          return result;
+          return (char*)result;
         }
       }
       log_info("  not found.\n");
