@@ -10,6 +10,6 @@ int main(int argc, char* argv[]) {
 
   char *result = dynamic_lookup(argv[1], argv[2]);
   if (result != NULL) {
-    printf("%s", dynamic_lookup(argv[1], argv[2]));
+    printf("%s\n", result);
   }
 }
