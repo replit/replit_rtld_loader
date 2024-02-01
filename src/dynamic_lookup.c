@@ -8,7 +8,7 @@
 // search results.
 static char search_result[MAX_PATH_LENGTH] = {0};
 
-char *dynamic_lookup(const char *libname, const char *ld_library_path) {
+const char *dynamic_lookup(const char *libname, const char *ld_library_path) {
   int libname_len = my_strlen(libname);
   const char *rllp = ld_library_path;
   const char *next_rllp = rllp;

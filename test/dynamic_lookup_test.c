@@ -8,8 +8,8 @@ int main(int argc, char* argv[]) {
     exit(1);
   }
 
-  char *result = dynamic_lookup(argv[1], argv[2]);
+  const char *result = dynamic_lookup(argv[1], argv[2]);
   if (result != NULL) {
-    printf("%s\n", result);
+    printf("%s", result);
   }
 }
