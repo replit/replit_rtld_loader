@@ -14,7 +14,7 @@ void parse_env(
 ) {
   char buf[1024];
   char varname[MAX_VARNAME_LENGTH];
-  int varnameCursor = 0;
+  int varname_cursor = 0;
   int state = PARSE_VARNAME;
   int ld_library_path_cursor = 0;
   replit_ld_library_path_buffer[0] = '\0';
@@ -28,24 +28,24 @@ void parse_env(
       char chr = buf[i];
       if (state == PARSE_VARNAME) {
         if (chr == '=') {
-          if (strneql(varname, "REPLIT_LD_LIBRARY_PATH", varnameCursor)) {
+          if (strneql(varname, "REPLIT_LD_LIBRARY_PATH", varname_cursor)) {
             state = PARSE_LD_LIBRARY_PATH;
             ld_library_path_cursor = 0;
-          } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL", varnameCursor)) {
+          } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL", varname_cursor)) {
             state = PARSE_LOG_LEVEL;
           } else {
             state = PARSE_IGNORED;
           }
         } else {
-          if (varnameCursor >= MAX_VARNAME_LENGTH) {
+          if (varname_cursor >= MAX_VARNAME_LENGTH) {
             continue; // truncate the varname if too long
           }
-          varname[varnameCursor++] = chr;
+          varname[varname_cursor++] = chr;
         }
       } else if (state == PARSE_IGNORED) {
         if (chr == '\0') {
           state = PARSE_VARNAME;
-          varnameCursor = 0;
+          varname_cursor = 0;
         }
       } else if (state == PARSE_LD_LIBRARY_PATH) {
         if (ld_library_path_cursor >= MAX_LD_LIBRARY_PATH_LENGTH - 1) {
@@ -55,7 +55,7 @@ void parse_env(
         } else if (chr == '\0') {
           replit_ld_library_path_buffer[ld_library_path_cursor] = '\0';
           state = PARSE_VARNAME;
-          varnameCursor = 0;
+          varname_cursor = 0;
         } else {
           replit_ld_library_path_buffer[ld_library_path_cursor++] = chr;
         }
