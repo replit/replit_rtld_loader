@@ -28,7 +28,7 @@ dynamic_lookup_test.bin: test/dynamic_lookup_test.c src/dynamic_lookup.[ch] src/
 
 .PHONY: lint
 lint: src/*.[ch] test/*.[ch]
-	clang-format -i $^
+	clang-format --style=chromium -i $^
 
 .PHONY: clean
 clean:
