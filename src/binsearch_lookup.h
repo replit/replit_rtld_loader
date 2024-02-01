@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 /*
 LibEntry is a library entry containing a libname: say libc.so and
 libpath: an absolute file path for locating the file containing the library.
@@ -19,4 +21,4 @@ Return value:
   the libpath value for the found entry with matching libname to the passed in libname.
   NULL if not found.
 */
-const char *binsearch_lookup(const char *libname, struct lib_entry *entries, int entriesLength);
+const char *binsearch_lookup(const char *libname, const struct lib_entry *entries, size_t entriesLength);

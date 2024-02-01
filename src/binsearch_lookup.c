@@ -2,7 +2,7 @@
 #include "binsearch_lookup.h"
 #include "string_funs.h"
 
-const char *binsearch_lookup(const char *libname, struct lib_entry *entries, int entriesLength) {
+const char *binsearch_lookup(const char *libname, const struct lib_entry *entries, size_t entriesLength) {
   int left = 0;
   int right = entriesLength - 1;
   
