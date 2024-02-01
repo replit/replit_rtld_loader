@@ -4,7 +4,7 @@
 # The generated files provide a lookup_by_channel(nix_channel, libname) function
 # that resolves libaries based on a list of known Nix packages for each supported
 # Nix channel. It converts the .json files in the registry directory into
-# pre-sorted static arrays of LibEntry structs.
+# pre-sorted static arrays of lib_entry structs.
 # The lookup implementation uses binary search on those arrays.
 
 import os
@@ -21,7 +21,7 @@ def gen_static_array_for(channel_file, array_name, lines):
     registry = json.load(f)
     entries = sorted(registry.items(), key=lambda e: e[0])
     lines.append('static int %s_length = %d;' % (array_name, len(entries)))
-    lines.append('static struct LibEntry %s[] = {' % array_name )
+    lines.append('const static struct lib_entry %s[] = {' % array_name )
     for key, libs in entries:
       lines.append('  { .libname = "%s", .libpath = "%s" },' % (
         key, libs[0]
@@ -43,7 +43,7 @@ def gen_get_nix_channel_fn(lines):
 
 def gen_lookup_fn(lines):
   lines.append('')
-  lines.append('char *lookup_by_channel(int nix_channel, const char *libname) {')
+  lines.append('const char *lookup_by_channel(int nix_channel, const char *libname) {')
   entries = os.listdir('registry')
   for entry in entries:
     with open('registry/%s' % entry) as f:
@@ -105,15 +105,14 @@ def gen_h_file():
     '/*',
     'This is an auto-generated file via scripts/gen_lookup_by_channel.py',
     '*/',
-    '#define CHANNEL_UNKNOWN    0',
-    '// Available Nix channels:',
+    'enum nix_channels {',
+    '  CHANNEL_UNKNOWN,',
   ]
-  counter = 1
   entries = os.listdir('registry')
   for entry in entries:
     const_name = channel_const_name(strip_ext(entry))
-    lines.append('#define %s    %d' % (const_name, counter))
-    counter += 1
+    lines.append('  %s,' % const_name)
+  lines.append('};')
   lines.append('')
   lines.append('// Find the Nix channel based on the absolute path of libc.so. Return CHANNEL_UNKNOWN if no match.')
   lines.append('int get_nix_channel(const char *libpath);')
@@ -123,7 +122,7 @@ def gen_h_file():
   lines.append('// * libname - the name of the library')
   lines.append('// Return value')
   lines.append('//   string containing absolute path of the shared object file. NULL if not found.')
-  lines.append('char *lookup_by_channel(int nix_channel, const char *libname);')
+  lines.append('const char *lookup_by_channel(int nix_channel, const char *libname);')
   lines.append('')
   
   lines.append('// Get a display string for a Nix channel')
