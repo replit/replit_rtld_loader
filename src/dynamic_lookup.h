@@ -10,4 +10,4 @@ Return value
   a string containing the absolute path of the shared object file if found, otherwise
   NULL
 */
-char *dynamic_lookup(const char *libname, const char *ld_library_path);
+const char *dynamic_lookup(const char *libname, const char *ld_library_path);
