@@ -1,14 +1,12 @@
-#include <stdio.h>
-#include <assert.h>
 #include "binsearch_lookup.h"
+#include <assert.h>
+#include <stdio.h>
 #include "string_funs.h"
 
 void test1() {
-  struct lib_entry entries[] = {
-    { .libname = "A", .libpath = "A-out" },
-    { .libname = "C", .libpath = "C-out" },
-    { .libname = "E", .libpath = "E-out" }
-  };
+  struct lib_entry entries[] = {{.libname = "A", .libpath = "A-out"},
+                                {.libname = "C", .libpath = "C-out"},
+                                {.libname = "E", .libpath = "E-out"}};
   assert(streql("A-out", binsearch_lookup("A", entries, 3)));
   assert(streql("C-out", binsearch_lookup("C", entries, 3)));
   assert(streql("E-out", binsearch_lookup("E", entries, 3)));
@@ -20,15 +18,15 @@ void test1() {
 
 void test2() {
   struct lib_entry entries[] = {
-    { .libname = "LLVMgold.so", .libpath = "0" },
-    { .libname = "libBrokenLocale.so", .libpath = "A" },
-    { .libname = "libBrokenLocale.so.1", .libpath = "B" },
-    { .libname = "libCGAL.so", .libpath = "C" },
-    { .libname = "libCGAL.so.13", .libpath = "D" },
-    { .libname = "libCGAL.so.13.0.3", .libpath = "E" },
-    { .libname = "libCGAL_Core.so", .libpath = "F" },
-    { .libname = "libCGAL_Core.so.13", .libpath = "G" },
-    { .libname = "libCGAL_Core.so.13.0.3", .libpath = "H" },
+      {.libname = "LLVMgold.so", .libpath = "0"},
+      {.libname = "libBrokenLocale.so", .libpath = "A"},
+      {.libname = "libBrokenLocale.so.1", .libpath = "B"},
+      {.libname = "libCGAL.so", .libpath = "C"},
+      {.libname = "libCGAL.so.13", .libpath = "D"},
+      {.libname = "libCGAL.so.13.0.3", .libpath = "E"},
+      {.libname = "libCGAL_Core.so", .libpath = "F"},
+      {.libname = "libCGAL_Core.so.13", .libpath = "G"},
+      {.libname = "libCGAL_Core.so.13.0.3", .libpath = "H"},
   };
   assert(streql("0", binsearch_lookup("LLVMgold.so", entries, 9)));
   assert(NULL == binsearch_lookup("_int.so", entries, 9));

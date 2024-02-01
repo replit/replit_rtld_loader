@@ -5,23 +5,22 @@ https://man7.org/linux/man-pages/man7/rtld-audit.7.html
 
 #define _GNU_SOURCE
 
+#include <fcntl.h>
 #include <link.h>
 #include <stdint.h>
 #include <unistd.h>
-#include <fcntl.h>
-#include "logging.h"
-#include "syscalls.h"
-#include "string_funs.h"
 #include "consts.h"
-#include "env_parser.h"
 #include "dynamic_lookup.h"
+#include "env_parser.h"
+#include "logging.h"
 #include "lookup_by_channel.generated.h"
+#include "string_funs.h"
+#include "syscalls.h"
 
 static int nix_channel = CHANNEL_UNKNOWN;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
 
-__attribute__((constructor))
-static void init(void) {
+__attribute__((constructor)) static void init(void) {
   int log_level;
   int fd = sys_open("/proc/self/environ", O_RDONLY, 0);
   parse_env(fd, replit_ld_library_path, &log_level);
@@ -36,20 +35,20 @@ unsigned int la_version(unsigned int version) {
   return version;
 }
 
-char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
+char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
   log_debug("la_objsearch(");
   log_debug(name);
   log_debug(", ");
   log_debug_int(flag);
   log_debug(")\n");
   if (flag == LA_SER_DEFAULT) {
-    char *libname = my_strrchr(name, '/');
+    char* libname = my_strrchr(name, '/');
     if (libname != NULL) {
-      libname++; // advance past the /
+      libname++;  // advance past the /
       log_info("ld library miss for ");
       log_info(libname);
       log_info("\n  searching...\n");
-      char *result = NULL;
+      char* result = NULL;
       if (nix_channel != CHANNEL_UNKNOWN) {
         result = lookup_by_channel(nix_channel, libname);
         if (result != NULL) {
@@ -71,11 +70,10 @@ char * la_objsearch(const char *name, uintptr_t *cookie, unsigned int flag) {
       log_info("  not found.\n");
     }
   }
-  return (char *)name;
+  return (char*)name;
 }
 
-unsigned int la_objopen(struct link_map *map, Lmid_t lmid,
- uintptr_t *cookie) {
+unsigned int la_objopen(struct link_map* map, Lmid_t lmid, uintptr_t* cookie) {
   log_debug("la_objopen(");
   log_debug(map->l_name);
   log_debug(")\n");
@@ -90,6 +88,6 @@ unsigned int la_objopen(struct link_map *map, Lmid_t lmid,
   return 0;
 }
 
-void la_preinit(uintptr_t *cookie) {
+void la_preinit(uintptr_t* cookie) {
   log_info("la_preinit()\n");
 }

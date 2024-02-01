@@ -6,7 +6,7 @@ enum env_parser_state {
   PARSE_LOG_LEVEL
 };
 
-#define MAX_VARNAME_LENGTH          1024
+#define MAX_VARNAME_LENGTH 1024
 
 /*
 Parses /proc/self/environ file to set config options for the rtld loader.
@@ -21,8 +21,4 @@ Which are:
   REPLIT_LD_LIBARY_PATH
 * log_level - location to output value of REPLIT_RTLD_LOG_LEVEL
 */
-void parse_env(
-  int fd,
-  char *replit_ld_library_path_buffer,
-  int *log_level
-);
+void parse_env(int fd, char* replit_ld_library_path_buffer, int* log_level);

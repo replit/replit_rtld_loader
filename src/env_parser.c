@@ -1,17 +1,13 @@
+#include "env_parser.h"
+#include <fcntl.h>
+#include "consts.h"
 #include "string_funs.h"
 #include "syscalls.h"
-#include <fcntl.h>
-#include "env_parser.h"
-#include "consts.h"
 
 /*
   Simple DFA-like parser (reads char by char; has a state)
 */
-void parse_env(
-  int fd,
-  char *replit_ld_library_path_buffer,
-  int *log_level
-) {
+void parse_env(int fd, char* replit_ld_library_path_buffer, int* log_level) {
   char buf[1024];
   char varname[MAX_VARNAME_LENGTH];
   int varname_cursor = 0;
@@ -31,14 +27,15 @@ void parse_env(
           if (strneql(varname, "REPLIT_LD_LIBRARY_PATH", varname_cursor)) {
             state = PARSE_LD_LIBRARY_PATH;
             ld_library_path_cursor = 0;
-          } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL", varname_cursor)) {
+          } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL",
+                             varname_cursor)) {
             state = PARSE_LOG_LEVEL;
           } else {
             state = PARSE_IGNORED;
           }
         } else {
           if (varname_cursor >= MAX_VARNAME_LENGTH) {
-            continue; // truncate the varname if too long
+            continue;  // truncate the varname if too long
           }
           varname[varname_cursor++] = chr;
         }

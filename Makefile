@@ -26,6 +26,10 @@ env_parser_test.bin: test/env_parser_test.c src/env_parser.[ch] src/string_funs.
 dynamic_lookup_test.bin: test/dynamic_lookup_test.c src/dynamic_lookup.[ch] src/string_funs.[ch] src/syscalls.h src/logging.[ch]
 	gcc $^ -g -o $@ -I src
 
+.PHONY: lint
+lint: src/*.[ch] test/*.[ch]
+	clang-format -i $^
+
 .PHONY: clean
 clean:
 	rm rtld_loader.so || true
