@@ -1,5 +1,6 @@
 #include <stddef.h>
 
+#define MAX_DECIMAL_INT_LEN  12
 /*
 All string functions are vendored or DIY.
 */
