@@ -71,7 +71,7 @@ strncmp (const char *s1, const char *s2, size_t n)
 // Taken from https://stackoverflow.com/a/12386915
 int itoa(int value, char *sp, int radix)
 {
-    char tmp[16];// be careful with the length of the buffer
+    char tmp[34]; // the longest integer's string representation is 32 characters in base 2. we also need one character for the sign and one more for the trailing NUL.
     char *tp = tmp;
     int i;
     unsigned v;
