@@ -1,0 +1,2 @@
+#define MAX_LD_LIBRARY_PATH_LENGTH  65535
+#define MAX_PATH_LENGTH             4096
