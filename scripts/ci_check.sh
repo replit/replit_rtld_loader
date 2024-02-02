@@ -3,5 +3,5 @@
 
 set -e
 
-make test
 make lint-check
+make test
