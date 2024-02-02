@@ -4,7 +4,7 @@ import os
 pwd = os.getcwd()
 rtld_env = {
   "LD_AUDIT": "%s/rtld_loader.so" % pwd,
-  "REPLIT_RTLD_LOG_LEVEL": "3"
+  "REPLIT_RTLD_LOG_LEVEL": "2"
 }
 python_23_11 = '/nix/store/2miairdnqbrsjlcllj2vypnvmk2k9z6j-python3-3.10.13'
 python_22_11 = '/nix/store/hd4cc9rh83j291r5539hkf6qd8lgiikb-python3-3.10.8'
