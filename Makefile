@@ -2,11 +2,12 @@
 all: rtld_loader.so test
 
 .PHONY: test
-test: binsearch_lookup_test.bin string_funs_test.bin env_parser_test.bin dynamic_lookup_test.bin
+test: binsearch_lookup_test.bin string_funs_test.bin env_parser_test.bin dynamic_lookup_test.bin rtld_loader.so
 	./binsearch_lookup_test.bin
 	./string_funs_test.bin
 	./env_parser_test.bin
 	python test/dynamic_lookup_test.py
+	python test/integration_tests.py
 
 rtld_loader.so: $(shell find src -type f) src/lookup_by_channel.generated.c
 	gcc -shared -nostdlib -fno-stack-protector -fPIC -O2 src/*.c -o rtld_loader.so
@@ -29,6 +30,10 @@ dynamic_lookup_test.bin: test/dynamic_lookup_test.c src/dynamic_lookup.[ch] src/
 .PHONY: lint
 lint: src/*.[ch] test/*.[ch]
 	clang-format -i $^
+
+.PHONY: lint-check
+lint-check: src/*.[ch] test/*.[ch]
+	clang-format --dry-run --Werror -i $^
 
 .PHONY: clean
 clean:
