@@ -12,6 +12,11 @@
         pname = "replit_rtld_loader";
         version = "1";
         src = ./.;
+        buildInputs = [pkgs.python310];
+        installPhase = ''
+          mkdir $out
+          mv rtld_loader.so $out/
+        '';
       };
       devShells.x86_64-linux.default = pkgs.mkShell {
         packages = with pkgs; [
