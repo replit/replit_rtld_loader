@@ -17,7 +17,6 @@ https://man7.org/linux/man-pages/man7/rtld-audit.7.html
 #include "string_funs.h"
 #include "syscalls.h"
 
-static int nix_channel = CHANNEL_UNKNOWN;
 static char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
 
 __attribute__((constructor)) static void init(void) {
@@ -49,15 +48,6 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
       log_info(libname);
       log_info("\n  searching...\n");
       const char* result = NULL;
-      if (nix_channel != CHANNEL_UNKNOWN) {
-        result = lookup_by_channel(nix_channel, libname);
-        if (result != NULL) {
-          log_info("  found statically: ");
-          log_info(result);
-          log_info("\n");
-          return (char*)result;
-        }
-      }
       if (result == NULL) {
         result = dynamic_lookup(libname, replit_ld_library_path);
         if (result != NULL) {
@@ -71,21 +61,6 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
     }
   }
   return (char*)name;
-}
-
-unsigned int la_objopen(struct link_map* map, Lmid_t lmid, uintptr_t* cookie) {
-  log_debug("la_objopen(");
-  log_debug(map->l_name);
-  log_debug(")\n");
-  if (nix_channel == CHANNEL_UNKNOWN) {
-    nix_channel = get_nix_channel(map->l_name);
-    if (nix_channel != CHANNEL_UNKNOWN) {
-      log_info("Found Nix channel: ");
-      log_info(nix_channel_str(nix_channel));
-      log_info("\n");
-    }
-  }
-  return 0;
 }
 
 void la_preinit(uintptr_t* cookie) {
