@@ -2,7 +2,25 @@
 
 # A python wrapper that uses LD_AUDIT with rtld loader for testing.
 
+#define CHANNEL_STABLE_22_05 1
+#define CHANNEL_STABLE_22_11 2
+#define CHANNEL_STABLE_23_05 3
+#define CHANNEL_STABLE_23_11 4
+
 export PYTHONPATH=${REPL_HOME}/.pythonlibs/lib/python3.10/site-packages
+export REPLIT_RTLD_NIX_CHANNEL=4
+
 export LD_LIBRARY_PATH=
 export LD_AUDIT=$REPL_HOME/rtld_loader.so
-exec "python3" "$@"
+
+# channel = "stable-23_11"
+exec /nix/store/2miairdnqbrsjlcllj2vypnvmk2k9z6j-python3-3.10.13/bin/python "$@"
+
+# channel = "stable-23_05"
+# exec /nix/store/xf54733x4chbawkh1qvy9i1i4mlscy1c-python3-3.10.11/bin/python "$@"
+
+# channel = "stable_22_11"
+# exec /nix/store/hd4cc9rh83j291r5539hkf6qd8lgiikb-python3-3.10.8/bin/python "$@"
+
+# channel = "stable_22_05"
+# exec /nix/store/xrs3m0ymsscgsb4k5r1d5x7rc9sg42b6-python3-3.10.4/bin/python "$@"

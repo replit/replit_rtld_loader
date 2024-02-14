@@ -8,7 +8,7 @@ hidden = [".pythonlibs"]
 PATH = "$REPL_HOME/scripts:$PATH"
 
 [nix]
-channel = "stable-23_11"
+channel = "stable-22_05"
 
 [unitTest]
 language = "python3"

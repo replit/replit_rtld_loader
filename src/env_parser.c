@@ -7,14 +7,14 @@
 /*
   Simple DFA-like parser (reads char by char; has a state)
 */
-void parse_env(int fd, char* replit_ld_library_path_buffer, int* log_level) {
+void parse_env(int fd, char* replit_ld_library_path_buffer, int* nix_channel) {
   char buf[1024];
   char varname[MAX_VARNAME_LENGTH];
   int varname_cursor = 0;
   int state = PARSE_VARNAME;
   int ld_library_path_cursor = 0;
   replit_ld_library_path_buffer[0] = '\0';
-  *log_level = 0;
+  *nix_channel = 0;
   while (1) {
     int bytes = sys_read(fd, buf, sizeof(buf));
     if (bytes <= 0) {
@@ -27,9 +27,9 @@ void parse_env(int fd, char* replit_ld_library_path_buffer, int* log_level) {
           if (strneql(varname, "REPLIT_LD_LIBRARY_PATH", varname_cursor)) {
             state = PARSE_LD_LIBRARY_PATH;
             ld_library_path_cursor = 0;
-          } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL",
+          } else if (strneql(varname, "REPLIT_RTLD_NIX_CHANNEL",
                              varname_cursor)) {
-            state = PARSE_LOG_LEVEL;
+            state = PARSE_NIX_CHANNEL;
           } else {
             state = PARSE_IGNORED;
           }
@@ -56,9 +56,9 @@ void parse_env(int fd, char* replit_ld_library_path_buffer, int* log_level) {
         } else {
           replit_ld_library_path_buffer[ld_library_path_cursor++] = chr;
         }
-      } else if (state == PARSE_LOG_LEVEL) {
+      } else if (state == PARSE_NIX_CHANNEL) {
         if (chr >= '0' && chr <= '9') {
-          *log_level = chr - '0';
+          *nix_channel = chr - '0';
         }
         // Only take one character, ignore the
         // rest of the value. This means double
