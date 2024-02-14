@@ -13,7 +13,6 @@ https://man7.org/linux/man-pages/man7/rtld-audit.7.html
 #include "dynamic_lookup.h"
 #include "env_parser.h"
 #include "logging.h"
-#include "lookup_by_channel.generated.h"
 #include "string_funs.h"
 #include "syscalls.h"
 
@@ -61,6 +60,13 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
     }
   }
   return (char*)name;
+}
+
+unsigned int la_objopen(struct link_map* map, Lmid_t lmid, uintptr_t* cookie) {
+  log_debug("la_objopen(");
+  log_debug(map->l_name);
+  log_debug(")\n");
+  return 0;
 }
 
 void la_preinit(uintptr_t* cookie) {

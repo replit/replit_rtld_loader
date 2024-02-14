@@ -9,7 +9,7 @@ test: binsearch_lookup_test.bin string_funs_test.bin env_parser_test.bin dynamic
 	python3 test/dynamic_lookup_test.py
 	python3 test/integration_tests.py
 
-rtld_loader.so: $(shell find src -type f) src/lookup_by_channel.generated.c
+rtld_loader.so: $(shell find src -type f)
 	gcc -shared -nostdlib -fno-stack-protector -fPIC -O2 src/*.c -o rtld_loader.so
 
 src/lookup_by_channel.generated.c: scripts/gen_lookup_by_channel.py $(shell find registry -type f)
