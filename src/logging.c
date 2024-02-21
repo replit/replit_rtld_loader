@@ -20,7 +20,8 @@ void fprint_int(int fd, int num) {
   sys_write(fd, int_str, len);
 }
 
-// For troubleshooting purposes: output contents of /proc/self/cmdline to the log file
+// For troubleshooting purposes: output contents of /proc/self/cmdline to the
+// log file
 void _output_cmdline() {
   char buf[1024];
   int cmdline_fd = sys_open("/proc/self/cmdline", O_RDONLY, 0);
