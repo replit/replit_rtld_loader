@@ -14,8 +14,6 @@ void log_init(int level);
  the message will be discarded.
 */
 void log_write(const char* message, int level);
-// Like log_write but specify length of the message
-void log_nwrite(const char* message, int len, int level);
 // Write integer to the log wit the specified level.
 void log_write_int(int num, int level);
 

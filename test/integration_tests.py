@@ -37,10 +37,20 @@ def test_multiple_logs_for_subprocess():
   code = "import subprocess; subprocess.run(['echo', 'hello, world!'])"
   output = subprocess.check_output(
     ["%s/bin/python" % python_23_11, '-c', code],
-    env = rtld_env
+    env = {
+      "LD_AUDIT": "%s/rtld_loader.so" % pwd,
+      "REPLIT_RTLD_LOG_LEVEL": "3"
+    }
   )
   assert os.path.exists("rtld_loader.log.1")
   assert os.path.exists("rtld_loader.log.2")
+  with open("rtld_loader.log.1", "r") as f:
+    content = f.read()
+    assert "/bin/python" in content
+  with open("rtld_loader.log.2", "r") as f:
+    content = f.read()
+    assert "echo" in content
+    assert "hello, world!" in content
   print('OK test_multiple_logs_for_subprocess')
 
 test_ace_dynamic()

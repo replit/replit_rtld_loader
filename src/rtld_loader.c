@@ -24,19 +24,6 @@ __attribute__((constructor)) static void init(void) {
   parse_env(fd, replit_ld_library_path, &log_level);
   sys_close(fd);
   log_init(log_level);
-  if (log_level > 0) {
-    char buf[1024];
-    int cmdline_fd = sys_open("/proc/self/cmdline", O_RDONLY, 0);
-    while (1) {
-      int bytes = sys_read(cmdline_fd, buf, sizeof(buf));
-      if (bytes <= 0) {
-        break;
-      }
-      log_info("cmdline: ");
-      log_nwrite(buf, bytes, INFO);
-      log_info("\n");
-    }
-  }
 }
 
 unsigned int la_version(unsigned int version) {

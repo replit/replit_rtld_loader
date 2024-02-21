@@ -20,6 +20,23 @@ void fprint_int(int fd, int num) {
   sys_write(fd, int_str, len);
 }
 
+// For troubleshooting purposes: output contents of /proc/self/cmdline to the log file
+void _output_cmdline() {
+  char buf[1024];
+  int cmdline_fd = sys_open("/proc/self/cmdline", O_RDONLY, 0);
+  while (1) {
+    int bytes = sys_read(cmdline_fd, buf, sizeof(buf));
+    if (bytes <= 0) {
+      break;
+    }
+    log_debug("cmdline: ");
+    if (log_level >= DEBUG) {
+      sys_write(audit_log_fd, buf, bytes);
+    }
+    log_debug("\n");
+  }
+}
+
 void log_init(int ll) {
   log_level = ll;
   if (log_level > 0) {
@@ -41,6 +58,8 @@ void log_init(int ll) {
         break;
       }
     }
+
+    _output_cmdline();
   }
 }
 
@@ -53,17 +72,6 @@ void log_write(const char* message, int level) {
   }
   fprint(audit_log_fd, message);
 }
-
-void log_nwrite(const char* message, int len, int level) {
-  if (audit_log_fd == -1) {
-    return;
-  }
-  if (level > log_level) {
-    return;
-  }
-  sys_write(audit_log_fd, message, len);
-}
-
 
 void log_write_int(int num, int level) {
   if (audit_log_fd == -1) {
