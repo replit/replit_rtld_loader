@@ -29,11 +29,11 @@ void _output_cmdline() {
     if (bytes <= 0) {
       break;
     }
-    log_debug("cmdline: ");
-    if (log_level >= DEBUG) {
+    log_info("cmdline: ");
+    if (log_level >= INFO) {
       sys_write(audit_log_fd, buf, bytes);
     }
-    log_debug("\n");
+    log_info("\n");
   }
 }
 
@@ -59,7 +59,9 @@ void log_init(int ll) {
       }
     }
 
-    _output_cmdline();
+    if (log_level >= INFO) {
+      _output_cmdline();
+    }
   }
 }
 
