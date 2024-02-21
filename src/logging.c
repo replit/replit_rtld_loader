@@ -3,6 +3,9 @@
 #include "string_funs.h"
 #include "syscalls.h"
 
+#define LOG_FILE_PREFIX "rtld_loader.log."
+#define LOG_FILE_PREFIX_LENGTH 16
+
 static int audit_log_fd = -1;
 static int log_level;
 
@@ -20,8 +23,24 @@ void fprint_int(int fd, int num) {
 void log_init(int ll) {
   log_level = ll;
   if (log_level > 0) {
-    audit_log_fd =
-        sys_open("rtld_loader.log", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    // Generated a log file name with a numeric suffix, i.e. rtld_loader.log.1
+    // if the file already exists, increment the suffix
+    char log_filename[LOG_FILE_PREFIX_LENGTH + MAX_DECIMAL_INT_LEN + 1];
+    my_strncpy(log_filename, LOG_FILE_PREFIX, LOG_FILE_PREFIX_LENGTH);
+    int suffix = 1;
+    while (1) {
+      int suffix_len = itoa(suffix, log_filename + LOG_FILE_PREFIX_LENGTH, 10);
+      log_filename[LOG_FILE_PREFIX_LENGTH + suffix_len] = '\0';
+      if (sys_access(log_filename, R_OK) == 0) {
+        // file already exists, try the next suffix
+        suffix++;
+      } else {
+        // we can use this one
+        audit_log_fd =
+            sys_open(log_filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        break;
+      }
+    }
   }
 }
 
@@ -34,6 +53,17 @@ void log_write(const char* message, int level) {
   }
   fprint(audit_log_fd, message);
 }
+
+void log_nwrite(const char* message, int len, int level) {
+  if (audit_log_fd == -1) {
+    return;
+  }
+  if (level > log_level) {
+    return;
+  }
+  sys_write(audit_log_fd, message, len);
+}
+
 
 void log_write_int(int num, int level) {
   if (audit_log_fd == -1) {

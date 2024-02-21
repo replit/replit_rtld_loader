@@ -16,6 +16,7 @@ realize(python_23_11)
 realize(ace)
 
 def test_ace_dynamic():
+  subprocess.run(["bash", "-c", "rm rtld_loader.log.*"])
   code = "import ctypes; print(ctypes.cdll.LoadLibrary('libACE_ETCL.so'))"
 
   env = rtld_env.copy()
@@ -26,8 +27,21 @@ def test_ace_dynamic():
     ["%s/bin/python" % python_23_11, '-c', code],
     env = env
   )
-  
+
+  print(str(output, 'UTF-8'))
   assert str(output, 'UTF-8').startswith("<CDLL 'libACE_ETCL.so'")
   print('OK test_ace_dynamic')
 
+def test_multiple_logs_for_subprocess():
+  subprocess.run(["bash", "-c", "rm rtld_loader.log.*"])
+  code = "import subprocess; subprocess.run(['echo', 'hello, world!'])"
+  output = subprocess.check_output(
+    ["%s/bin/python" % python_23_11, '-c', code],
+    env = rtld_env
+  )
+  assert os.path.exists("rtld_loader.log.1")
+  assert os.path.exists("rtld_loader.log.2")
+  print('OK test_multiple_logs_for_subprocess')
+
 test_ace_dynamic()
+test_multiple_logs_for_subprocess()
