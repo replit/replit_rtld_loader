@@ -3,6 +3,7 @@
 # A python wrapper that uses LD_AUDIT with rtld loader for testing.
 
 export PYTHONPATH=${REPL_HOME}/.pythonlibs/lib/python3.10/site-packages
+export REPLIT_RTLD_LOG_LEVEL=2
 export LD_LIBRARY_PATH=
 export LD_AUDIT=$REPL_HOME/rtld_loader.so
 exec "python3" "$@"
