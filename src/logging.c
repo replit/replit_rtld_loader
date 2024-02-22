@@ -36,6 +36,7 @@ void _output_cmdline() {
     }
     log_info("\n");
   }
+  sys_close(cmdline_fd);
 }
 
 void log_init(int ll) {
