@@ -24,18 +24,19 @@ void fprint_int(int fd, int num) {
 // log file
 void _output_cmdline() {
   char buf[1024];
+  if (log_level < INFO) {
+    return;
+  }
+  log_info("cmdline: ");
   int cmdline_fd = sys_open("/proc/self/cmdline", O_RDONLY, 0);
   while (1) {
     int bytes = sys_read(cmdline_fd, buf, sizeof(buf));
     if (bytes <= 0) {
       break;
     }
-    log_info("cmdline: ");
-    if (log_level >= INFO) {
-      sys_write(audit_log_fd, buf, bytes);
-    }
-    log_info("\n");
+    sys_write(audit_log_fd, buf, bytes);
   }
+  log_info("\n");
 }
 
 void log_init(int ll) {
@@ -60,9 +61,7 @@ void log_init(int ll) {
       }
     }
 
-    if (log_level >= INFO) {
-      _output_cmdline();
-    }
+    _output_cmdline();
   }
 }
 
