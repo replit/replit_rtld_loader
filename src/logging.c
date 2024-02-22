@@ -37,6 +37,7 @@ void _output_cmdline() {
     sys_write(audit_log_fd, buf, bytes);
   }
   log_info("\n");
+  sys_close(cmdline_fd);
 }
 
 void log_init(int ll) {
