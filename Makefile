@@ -2,8 +2,7 @@
 all: rtld_loader.so
 
 .PHONY: test
-test: binsearch_lookup_test.bin string_funs_test.bin env_parser_test.bin dynamic_lookup_test.bin rtld_loader.so
-	./binsearch_lookup_test.bin
+test: string_funs_test.bin env_parser_test.bin dynamic_lookup_test.bin rtld_loader.so
 	./string_funs_test.bin
 	./env_parser_test.bin
 	python3 test/dynamic_lookup_test.py
@@ -11,12 +10,6 @@ test: binsearch_lookup_test.bin string_funs_test.bin env_parser_test.bin dynamic
 
 rtld_loader.so: $(shell find src -type f)
 	gcc -shared -nostdlib -fno-stack-protector -fPIC -O2 src/*.c -o rtld_loader.so
-
-src/lookup_by_channel.generated.c: scripts/gen_lookup_by_channel.py $(shell find registry -type f)
-	python scripts/gen_lookup_by_channel.py
-
-binsearch_lookup_test.bin: test/binsearch_lookup_test.c src/string_funs.[ch] src/binsearch_lookup.[ch]
-	gcc $^ -g -o $@ -I src
 
 string_funs_test.bin: test/string_funs_test.c src/string_funs.[ch]
 	gcc $^ -g -o $@ -I src
