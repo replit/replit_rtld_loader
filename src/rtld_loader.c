@@ -39,7 +39,7 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
   log_debug(", ");
   log_debug_int(flag);
   log_debug(")\n");
-  if (flag == LA_SER_DEFAULT) {
+  if (flag == LA_SER_DEFAULT && strncmp(name, "/nix/store", 10) != 0) {
     char* libname = my_strrchr(name, '/');
     if (libname != NULL) {
       libname++;  // advance past the /
