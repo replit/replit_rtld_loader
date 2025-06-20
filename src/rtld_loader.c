@@ -39,7 +39,7 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
   log_debug(", ");
   log_debug_int(flag);
   log_debug(")\n");
-  if (flag == LA_SER_DEFAULT && strncmp(name, "/nix/store", 10) != 0) {
+  if (flag == LA_SER_DEFAULT) {
     char* libname = my_strrchr(name, '/');
     if (libname != NULL) {
       libname++;  // advance past the /
@@ -48,7 +48,24 @@ char* la_objsearch(const char* name, uintptr_t* cookie, unsigned int flag) {
       log_info("\n  searching...\n");
       const char* result = NULL;
       if (result == NULL) {
-        result = dynamic_lookup(libname, replit_ld_library_path);
+        const char* search_path = replit_ld_library_path;
+        if (strstartswith("/nix/store/", name)) {
+          // Count slashes to find the 5th one (after /nix/store/hash-name/lib/)
+          int slash_count = 0;
+          int i;
+          for (i = 0; name[i] && slash_count < 5; i++) {
+            if (name[i] == '/') slash_count++;
+          }
+          // Check if it's actually a /lib/ directory
+            if (i >= 5 && i <= MAX_LD_LIBRARY_PATH_LENGTH && strneql(name + i - 5, "/lib/", 5)) {
+            char extended_path[MAX_LD_LIBRARY_PATH_LENGTH];
+            my_strncpy(extended_path, name, i);
+            extended_path[i - 1] = ':';
+            my_strncpy(extended_path + i, replit_ld_library_path, MAX_LD_LIBRARY_PATH_LENGTH - i - 1);
+            search_path = extended_path;
+          }
+        }
+        result = dynamic_lookup(libname, search_path);
         if (result != NULL) {
           log_info("  found dynamically: ");
           log_info(result);
