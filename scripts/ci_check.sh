@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i bash -p clang python310Full gnumake
+#! nix-shell -i bash -p clang python312Full gnumake
 
 set -e
 
