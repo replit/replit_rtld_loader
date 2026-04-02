@@ -2,7 +2,7 @@
 {pkgs}: {
   deps = [
     pkgs.gdb
-    pkgs.python312Full
+    pkgs.python314Full
     pkgs.clang
   ];
 }

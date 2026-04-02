@@ -21,7 +21,7 @@
       packages.x86_64-linux.default = package;
       devShells.x86_64-linux.default = pkgs.mkShell {
         packages = with pkgs; [
-          python312
+          python314
           gnumake
         ];
       };
