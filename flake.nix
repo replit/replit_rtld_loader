@@ -10,7 +10,7 @@
       pname = "replit_rtld_loader";
       version = "1";
       src = ./.;
-      buildInputs = [pkgs.python310];
+      buildInputs = [];
       installPhase = ''
         mkdir $out
         mv rtld_loader.so $out/
@@ -21,7 +21,7 @@
       packages.x86_64-linux.default = package;
       devShells.x86_64-linux.default = pkgs.mkShell {
         packages = with pkgs; [
-          python310
+          python314
           gnumake
         ];
       };
