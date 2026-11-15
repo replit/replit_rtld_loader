@@ -82,10 +82,29 @@ void test4() {
   assert(1 == log_level);
 }
 
+void test5() {
+  char replit_ld_library_path[MAX_LD_LIBRARY_PATH_LENGTH] = {0};
+  int log_level = -1;
+  const char content[] =
+      "REPLIT_LD_LIBRARY_PAT=/invalid\0"
+      "REPLIT_RTLD_LOG_LEVE=3\0";
+  int fd =
+      sys_open("/tmp/fake_environ.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+  sys_write(fd, content, sizeof(content) - 1);
+  sys_close(fd);
+
+  fd = sys_open("/tmp/fake_environ.txt", O_RDONLY, 0);
+  parse_env(fd, (char*)&replit_ld_library_path, &log_level);
+  assert(streql(replit_ld_library_path, ""));
+  assert(0 == log_level);
+}
+
 int main() {
   test0();
   test1();
   test2();
+  test3();
   test4();
+  test5();
   printf("OK\n");
 }
