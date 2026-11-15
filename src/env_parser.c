@@ -24,10 +24,12 @@ void parse_env(int fd, char* replit_ld_library_path_buffer, int* log_level) {
       char chr = buf[i];
       if (state == PARSE_VARNAME) {
         if (chr == '=') {
-          if (strneql(varname, "REPLIT_LD_LIBRARY_PATH", varname_cursor)) {
+          if (varname_cursor == sizeof("REPLIT_LD_LIBRARY_PATH") - 1 &&
+              strneql(varname, "REPLIT_LD_LIBRARY_PATH", varname_cursor)) {
             state = PARSE_LD_LIBRARY_PATH;
             ld_library_path_cursor = 0;
-          } else if (strneql(varname, "REPLIT_RTLD_LOG_LEVEL",
+          } else if (varname_cursor == sizeof("REPLIT_RTLD_LOG_LEVEL") - 1 &&
+                     strneql(varname, "REPLIT_RTLD_LOG_LEVEL",
                              varname_cursor)) {
             state = PARSE_LOG_LEVEL;
           } else {
